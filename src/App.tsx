@@ -1,26 +1,72 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Content from 'layout/content.component'
+import { useEffect, useRef } from 'react'
+import { Outlet } from 'react-router'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import Header from 'layout/header.component'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(): React.ReactElement {
+    const contentRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        AOS.init({
+            delay: 300,
+            once: true,
+        })
+    }, [])
+
+    useEffect(() => {
+        const contentElement = contentRef.current
+        if (contentElement) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        let playTimeout
+                        let video = entry.target as HTMLVideoElement
+                        if (entry.isIntersecting) {
+                            if (video.paused)
+                                playTimeout = setTimeout(() => {
+                                    video.currentTime = 0
+                                    video.play()
+                                }, 500)
+                        } else {
+                            if (playTimeout) {
+                                clearTimeout(playTimeout)
+                                playTimeout = null
+                            }
+                            video.pause()
+                            video.currentTime = 0
+                        }
+                    })
+                },
+                {
+                    root: contentElement,
+                    threshold: 0.85,
+                },
+            )
+
+            document.querySelectorAll('video').forEach((video) => {
+                observer.observe(video)
+            })
+
+            return () => {
+                observer.disconnect()
+            }
+        }
+    }, [])
+
+    return (
+        <>
+            <div className="logistical-layout">
+                <div className="logistical-content w-full" ref={contentRef}>
+                    {/* <Header /> */}
+                    <Content>
+                        <Outlet />
+                    </Content>
+                </div>
+            </div>
+        </>
+    )
 }
 
-export default App;
+export default App

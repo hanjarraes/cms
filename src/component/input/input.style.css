@@ -1,0 +1,82 @@
+.inputParent-style {
+    @apply w-full flex relative;
+}
+
+.inputParent-style .input-group {
+    @apply border rounded;
+}
+.inputParent-style .input-group input {
+    @apply flex-1  border-none;
+}
+
+.inputParent-style label div {
+    @apply w-fit  ml-2 z-[1] text-[24px] absolute;
+}
+
+.inputParent-style label p {
+    padding-left: 2px;
+    padding-right: 2px;
+    height: 10px;
+    color: var(--gray-v5);
+    position: relative;
+    margin-top: -7.5px;
+}
+
+.inputLabelDiv-style {
+    @apply w-fit;
+    height: 3px;
+    background-color: var(--gray-v1);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    display: flex;
+    position: absolute;
+}
+
+.inputParent-style input {
+    @apply h-10;
+    @apply border rounded-lg text-[14px];
+    @apply focus:!ring-transparent;
+    @apply !w-full;
+    border-color: var(--gray-v3);
+}
+.inputParent-style input:focus {
+    border-color: var(--brand-v5);
+}
+
+.inputParent-style input::placeholder {
+    color: var(--gray-v4);
+}
+
+.inputParent-style input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    -webkit-text-fill-color: #333;
+}
+
+.inputParent-style input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    -webkit-text-fill-color: #333;
+}
+
+.inputParent-style .disabled-gray {
+    color: var(--gray-v6);
+    background-color: var(--gray-v1);
+}
+
+.inputParent-style .disabled-white {
+    color: var(--gray-v5);
+    background-color: var(--white);
+}
+
+.inputParent-style .input-icon {
+    @apply ml-[-2.3rem];
+    padding-right: 10px;
+    padding-left: 9px;
+    height: 80%;
+}
+
+input {
+    color: var(--gray-v7) !important;
+}

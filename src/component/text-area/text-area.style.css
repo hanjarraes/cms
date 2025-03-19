@@ -1,0 +1,50 @@
+.textareaParent-style {
+    @apply relative w-full;
+}
+
+.textareaParent-style label {
+    @apply w-fit absolute;
+    @apply translate-x-2;
+}
+
+.textareaParent-style .label-down {
+    @apply w-fit absolute;
+    @apply translate-x-2;
+    bottom: 0px;
+    right: 30px
+}
+
+.textareaParent-style div {
+    @apply w-fit h-[2px] px-[2px];
+    background-color: var(--white);
+}
+
+.textareaParent-style p {
+    @apply w-fit;
+    @apply -translate-y-2;
+}
+
+.textareaParent-style textarea {
+    @apply h-full w-full p-2;
+    @apply border rounded-lg;
+    background-color: var(--white);
+    border-color: var(--gray-v3);
+}
+.textareaParent-style textarea:focus {
+    border-color: var(--brand-v5);
+    @apply !ring-transparent;
+}
+
+.textareaParent-style .disabled-gray {
+    color: var(--gray-v6);
+    background-color: var(--gray-v1);
+}
+
+.textareaParent-style .disabled-white {
+    color: var(--gray-v5);
+    background-color: var(--white);
+}
+
+.textareaParent-style textarea::placeholder {
+    color: var(--gray-v4);
+}
