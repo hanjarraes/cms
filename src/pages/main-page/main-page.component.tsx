@@ -1,64 +1,47 @@
-import { SetStateAction, useState } from "react";
 import { Option, dummyQuestions } from "./main-page.dummy";
 import Textarea from "component/text-area/text-area.component";
 import Button from "component/button/button.component";
 import DatePicker from "component/date-picker/date-picker.component";
+import useMainPages from "./main-page.service";
+import Modal from "component/modal/modal.component";
+import LiveEditor from "component/live-editor/live-editor.component";
 
 const MainPage = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [answers, setAnswers] = useState<{ [key: number]: any }>({});
-    const currentQuestion = dummyQuestions[currentIndex];
-
-    const handleNext = () => {
-        if (currentIndex < dummyQuestions.length - 1) {
-            setCurrentIndex((prev) => prev + 1);
-        }
-    };
-
-    const handlePrevious = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex((prev) => prev - 1);
-        }
-    };
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { value, type, name } = event.target;
-
-        // Type assertion untuk input checkbox
-        const isChecked = (event.target as HTMLInputElement).checked;
-
-        setAnswers((prev) => ({
-            ...prev,
-            [currentIndex]: type === "checkbox"
-                ? isChecked
-                    ? [...(prev[currentIndex] || []), value]
-                    : (prev[currentIndex] || []).filter((v: string) => v !== value)
-                : value
-        }));
-    };
-
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            setAnswers((prev) => ({
-                ...prev,
-                [currentIndex]: {
-                    filename: file.name,
-                    fileUrl: URL.createObjectURL(file)
-                }
-            }));
-        }
-    };
+    const {
+        answers,
+        currentIndex,
+        currentQuestion,
+        modalWarning,
+        isUserPresent,
+        videoRef,
+        canvasRef,
+        timeLeft,
+        handleFullscreen,
+        formatTime,
+        setIsRunning,
+        handleFileChange,
+        handleChange,
+        handlePrevious,
+        setCurrentIndex,
+        handleNext,
+    } = useMainPages();
 
     return (
         <div className="min-h-screen flex flex-col">
-            <div className="flex justify-between items-center bg-[--white] px-5 py-2 shadow-lg">
-                <div className="flex gap-2 items-center bg-[--blue-v5] text-[--white] rounded-md pr-3 pl-2">
+            <div>
+                <video ref={videoRef} autoPlay playsInline style={{ display: "none" }} />
+                <canvas ref={canvasRef} style={{ display: "none" }} />
+                {/* <p style={{ color: isUserPresent ? "green" : "red" }}>
+                    {isUserPresent ? "✅ User is present" : "⚠️ No user detected!"}
+                </p> */}
+            </div>
+            <div className="grid grid-cols-3 justify-between items-center bg-[--white] px-5 py-2 shadow-lg">
+                <div className="flex w-fit gap-2 items-center bg-[--blue-v5] text-[--white] rounded-md pr-3 pl-2">
                     <i className="ri-timer-line text-[24px]" />
-                    <div>60:00</div>
+                    <div onClick={() => setIsRunning(true)}>{formatTime(timeLeft)}</div>
                 </div>
-                <h2>Question {currentIndex + 1} of {dummyQuestions.length}</h2>
-                <div className="flex gap-2">
+                <h2 className="flex justify-center">Question {currentIndex + 1} of {dummyQuestions.length}</h2>
+                <div className="flex gap-2 justify-end">
                     <Button
                         onClick={handlePrevious}
                         disabled={currentIndex === 0}
@@ -89,7 +72,7 @@ const MainPage = () => {
                         })}
                     </div>
                 </div>
-                <div className="col-span-4 bg-[--white] rounded-lg shadow-lg p-6 h-full">
+                <div className={`${currentQuestion.type === 'codeText' ? 'col-span-3' : 'col-span-4' }  bg-[--white] rounded-lg shadow-lg p-6 h-full`}>
                     <div className="flex justify-center mb-5">
                         <div className="bg-[--blue-v5] text-[--white] h-[45px] w-[45px] flex items-center justify-center rounded-full font-bold text-[20px]">
                             {currentIndex + 1}
@@ -106,7 +89,7 @@ const MainPage = () => {
                     )}
 
                 </div>
-                <div className="col-span-5 bg-[--white] rounded-lg shadow-lg p-6 h-full">
+                <div className={`${currentQuestion.type === 'codeText' ? 'col-span-6' : 'col-span-5' } bg-[--white] rounded-lg shadow-lg p-6 h-full`}>
                     <div className="question-container h-[calc(100vh-10rem)] overflow-auto">
                         {currentQuestion.type === "text" && (
                             <Textarea
@@ -197,20 +180,42 @@ const MainPage = () => {
                         )}
 
                         {currentQuestion.type === "codeText" && (
-                            <textarea
-                                name="answer"
-                                value={answers[currentIndex] || ""}
-                                onChange={handleChange}
-                                placeholder="Write your code here..."
-                            />
+                            <LiveEditor />
                         )}
 
                         {answers[currentIndex] && currentQuestion.type === "file" && (
                             <p>Uploaded file: {answers[currentIndex].filename}</p>
                         )}
+
                     </div>
                 </div>
             </div>
+            <Modal
+                isModalOpen={modalWarning.isModalOpen}
+                parentDivClassName="bg-[#ff0000a6] bg-opacity-50"
+                className="md:w-1/4 mobile:min-w-0 min-w-[500px] !p-0 md:absolute sticky"
+            >
+                <div className="flex flex-1 flex-col">
+                    {/* Header */}
+                    <div className="flex font-bold text-size-L justify-between p-4 items-center border-b">
+                        <div className="text-[--red-v3] flex gap-2 items-center">
+                            <i className="ri-error-warning-line text-[24px]" />
+                            Warning !!
+                        </div>
+                        <div className="flex justify-center items-center pl-4">
+                            <i
+                                className="ri-close-fill cursor-pointer text-[24px]"
+                                onClick={() => {
+                                    modalWarning.closeModalHandling()
+                                }}
+                            ></i>
+                        </div>
+                    </div>
+                    <div className="p-4 text-[--red-v3] ">
+                        Your mouse activity or user presence is no longer detected in the application. <span className="font-bold">Please return to continue.</span>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };

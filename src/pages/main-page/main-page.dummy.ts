@@ -4,6 +4,7 @@ export interface BaseQuestion {
     title: string;
     description?: string;
     img?: string;
+    video?: string;
     required: boolean;
     userAnswer?: any;
     correctAnswer?: any;
@@ -13,6 +14,7 @@ export interface Option {
     id: number;
     text?: string;
     img?: string;
+    video?: string;
 }
 
 export interface OptionQuestion extends BaseQuestion {
@@ -67,7 +69,11 @@ export interface FileQuestion extends BaseQuestion {
 
 export interface CodeTextQuestion extends BaseQuestion {
     type: 'codeText';
-    userAnswer?: string; // Kode yang user input
+    userAnswer?: {
+        html: string;
+        css: string;
+        js: string;
+    }; 
 }
 
 export interface CodeFileQuestion extends BaseQuestion {
@@ -89,6 +95,17 @@ export type Question =
 
 
 export const dummyQuestions: Question[] = [
+    {
+        id: 8,
+        type: "codeText",
+        title: "Tulis program JavaScript untuk mencetak angka 1-10",
+        required: true,
+        userAnswer: {
+            html: "",
+            css: "",
+            js: "", 
+        },
+    },
     {
         id: 1,
         type: "text",
@@ -134,7 +151,6 @@ export const dummyQuestions: Question[] = [
         id: 3,
         type: "checkbox",
         title: "Pilih provinsi di Pulau Jawa",
-        img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Indonesia_provinces_blank_map.svg",
         required: true,
         options: [
             { id: 1, text: "Jawa Barat" },
@@ -149,7 +165,6 @@ export const dummyQuestions: Question[] = [
         id: 4,
         type: "select",
         title: "Pilih mata uang resmi Jepang",
-        img: "https://upload.wikimedia.org/wikipedia/commons/d/db/1000_yen_banknote_2004.jpg",
         required: true,
         options: [
             { id: 1, text: "Yen" },
@@ -164,7 +179,6 @@ export const dummyQuestions: Question[] = [
         id: 5,
         type: "date",
         title: "Kapan Indonesia merdeka?",
-        img: "https://upload.wikimedia.org/wikipedia/commons/9/97/Proklamasi_Indonesia.jpg",
         required: true,
         userAnswer: "",
         correctAnswer: "1945-08-17",
@@ -173,7 +187,6 @@ export const dummyQuestions: Question[] = [
         id: 6,
         type: "time",
         title: "Jam berapa matahari terbit di Jakarta?",
-        img: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Sunrise_in_Jakarta.jpg",
         required: false,
         userAnswer: "",
         correctAnswer: "06:00",
@@ -182,29 +195,18 @@ export const dummyQuestions: Question[] = [
         id: 7,
         type: "file",
         title: "Upload CV dalam format PDF",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg",
         required: true,
-    },
-    {
-        id: 8,
-        type: "codeText",
-        title: "Tulis program JavaScript untuk mencetak angka 1-10",
-        img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
-        required: true,
-        userAnswer: "",
     },
     {
         id: 9,
         type: "codeFile",
         title: "Upload file kode Python yang mencetak 'Hello, World!'",
-        img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
         required: true,
     },
     {
         id: 10,
         type: "radio",
         title: "Manakah planet terbesar di tata surya?",
-        img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg",
         required: true,
         options: [
             { id: 1, text: "Bumi" },
@@ -219,7 +221,6 @@ export const dummyQuestions: Question[] = [
         id: 11,
         type: "checkbox",
         title: "Pilih warna primer",
-        img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/AdditiveColor.svg",
         required: true,
         options: [
             { id: 1, text: "Merah" },
@@ -234,7 +235,6 @@ export const dummyQuestions: Question[] = [
         id: 12,
         type: "select",
         title: "Pilih ibukota Prancis",
-        img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Eiffel_Tower%2C_Paris_15_August_2014.jpg",
         required: true,
         options: [
             { id: 1, text: "Berlin" },
@@ -249,7 +249,6 @@ export const dummyQuestions: Question[] = [
         id: 13,
         type: "text",
         title: "Sebutkan satu nama pahlawan nasional Indonesia!",
-        img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Cut_Nyak_Dhien.jpg",
         required: true,
         userAnswer: "",
     },
@@ -257,7 +256,6 @@ export const dummyQuestions: Question[] = [
         id: 14,
         type: "date",
         title: "Kapan NASA pertama kali mendaratkan manusia di bulan?",
-        img: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Neil_Armstrong_pose.jpg",
         required: true,
         userAnswer: "",
         correctAnswer: "1969-07-20",
@@ -266,7 +264,6 @@ export const dummyQuestions: Question[] = [
         id: 15,
         type: "time",
         title: "Jam berapa biasanya kamu tidur?",
-        img: "https://upload.wikimedia.org/wikipedia/commons/6/68/Moon.jpg",
         required: false,
         userAnswer: "",
     },

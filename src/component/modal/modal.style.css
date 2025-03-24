@@ -1,0 +1,32 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.cms-modal {
+  /* Initial state */
+  opacity: 0;
+  animation-fill-mode: forwards; /* Keep the animation state after it ends */
+}
+
+.cms-modal.fade-in {
+  opacity: 1;
+  animation: fadeIn 200ms ease-in; /* 200ms for fade-in */
+}
+
+.cms-modal.fade-out {
+  animation: fadeOut 50ms ease-out; /* 50ms for fade-out */
+}
