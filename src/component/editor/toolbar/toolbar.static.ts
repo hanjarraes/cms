@@ -1,0 +1,17 @@
+export const defaultFontFamily = [
+    'Inter',
+    'Comic Sans MS, Comic Sans',
+    'serif',
+    'cursive',
+    'Arial',
+    'Arial Black',
+    'Georgia',
+    'Impact',
+    'Tahoma',
+    'Times New Roman',
+    'Verdana',
+    'Courier New',
+    'Lucida Console',
+    'Monaco',
+    'monospace',
+]

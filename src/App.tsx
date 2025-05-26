@@ -57,13 +57,11 @@ function App(): React.ReactElement {
 
     return (
         <>
-            <div className="logistical-layout">
-                <div className="logistical-content w-full" ref={contentRef}>
-                    {/* <Header /> */}
-                    <Content>
-                        <Outlet />
-                    </Content>
-                </div>
+            <div ref={contentRef}>
+                <Header />
+                <Content>
+                    <Outlet />
+                </Content>
             </div>
         </>
     )

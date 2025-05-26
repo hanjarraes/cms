@@ -1,25 +1,3 @@
-.logistical-layout {
-    /* @apply w-full fixed sm:w-full; */
-    background-color: var(--loglines-gray-v1);
-}
-
-.logistical-content {
-    /* height */
-    @apply h-[calc(100vh)] overflow-y-auto;
-
-    &::-webkit-scrollbar {
-        width: 0px !important;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: transparent;
-    }
-}
-
 .mobile-version {
     @apply sm:absolute md:relative sm:left-0 sm:top-[64px] sm:z-[1];
 }

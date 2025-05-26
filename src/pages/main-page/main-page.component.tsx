@@ -31,9 +31,9 @@ const MainPage = () => {
             <div>
                 <video ref={videoRef} autoPlay playsInline style={{ display: "none" }} />
                 <canvas ref={canvasRef} style={{ display: "none" }} />
-                {/* <p style={{ color: isUserPresent ? "green" : "red" }}>
+                <p style={{ color: isUserPresent ? "green" : "red" }}>
                     {isUserPresent ? "✅ User is present" : "⚠️ No user detected!"}
-                </p> */}
+                </p>
             </div>
             <div className="grid grid-cols-3 justify-between items-center bg-[--white] px-5 py-2 shadow-lg">
                 <div className="flex w-fit gap-2 items-center bg-[--blue-v5] text-[--white] rounded-md pr-3 pl-2">

@@ -3,6 +3,7 @@ import { IRoute } from 'common/common.interface'
 import { mainRoutes } from 'common/routes/routes'
 import { useConfig } from 'config/config.service'
 import Page404 from 'pages/404-page/404-page.component'
+import MainPage from 'pages/main-page/main-page.component'
 
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -41,7 +42,7 @@ const AppRoute = () => {
                     },
                 )}
             </Route>
-
+            <Route path="/ujian" element={<MainPage />} />
             {/* 404 */}
             <Route path="/*" element={<Page404 />} />
         </Routes>

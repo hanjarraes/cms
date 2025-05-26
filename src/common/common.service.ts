@@ -67,8 +67,6 @@ export const put = async <D, T>(props: IPost<T>) => {
 }
 
 export const deleteRequest = async <D, T>(props: IFetch<T>) => {
-    console.log('props', props)
-
     const response: AxiosResponse<D> = await axios.delete(
         getBaseUrl() + props.endpoint,
         { params: props.params },
@@ -140,7 +138,21 @@ export function useOutsideClickHandling(ref: any, func: () => void) {
     }, [ref])
 }
 
-export const getRoutesByClient = () => {
-    // custom function to get route by client
-    // not implemented on standalone project
+export const numberWithCommas = (x: string) => {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
+
+export const formatDecimalNumber = (value?: number) => {
+    if (!value) return '0.00'
+
+    const valueString = value.toString()
+
+    // Periksa apakah nilai sudah memiliki titik desimal
+    if (valueString.includes('.')) {
+        return numberWithCommas(valueString) // Kembalikan nilai tanpa toFixed(2)
+    }
+
+    // Jika tidak ada titik desimal, gunakan toFixed(2)
+    return numberWithCommas(value.toFixed(2))
+}
+
