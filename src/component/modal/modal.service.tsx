@@ -6,6 +6,7 @@ export interface IUseModal {
     closeModalHandling: () => void
     toggleModalHandling: () => void
 }
+
 export const useModal = (): IUseModal => {
     const [isModalOpen, setModalOpen] = useState(false)
 

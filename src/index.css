@@ -42,6 +42,7 @@
 
     --white: #ffffff;
     --black: #222222;
+    overflow: hidden;
 }
 
 body {

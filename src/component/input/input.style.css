@@ -10,7 +10,7 @@
 }
 
 .inputParent-style label div {
-    @apply w-fit  ml-2 z-[1] text-[24px] absolute;
+    @apply w-fit  ml-2 z-[1] text-[14px] absolute;
 }
 
 .inputParent-style label p {

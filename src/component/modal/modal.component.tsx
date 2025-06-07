@@ -1,35 +1,55 @@
 import './modal.style.css'
+import clsx from 'clsx'
 
 const Modal = ({
-    children,
-    isModalOpen,
-    className,
-    zIndex = 9999,
-    hideOnDefault = true,
-    parentDivClassName,
+  children,
+  isModalOpen,
+  className,
+  zIndex = 9999,
+  hideOnDefault = true,
+  parentDivClassName,
+  animationDirection = 'center',
 }: {
-    isModalOpen: boolean
-    children: React.ReactNode
-    className?: string
-    zIndex?: number
-    hideOnDefault?: boolean
-    parentDivClassName?:string
+  isModalOpen: boolean
+  children: React.ReactNode
+  className?: string
+  zIndex?: number
+  hideOnDefault?: boolean
+  parentDivClassName?: string
+  animationDirection?: 'top' | 'bottom' | 'left' | 'right' | 'center'
 }) => {
-    const disActiveClassName = `z-[-9999] ${hideOnDefault ? 'hidden' : ''} fade-out pointer-events-none`
-    const activeClassName = `z-[${zIndex}] fade-in bg-opacity-75 bg-gray-800`
-    const modalClassName = isModalOpen ? activeClassName : disActiveClassName
-    return (
-        <div
-            style={{ zIndex: zIndex }}
-            className={`cms-modal fixed inset-0 bg-opacity-0 flex items-center justify-center  ${modalClassName} ${parentDivClassName}`}
-        >
-            <div
-                className={`${className} bg-[--white] p-4 rounded w-3/4 sm:w-full sm:m-4 `}
-            >
-                {children}
-            </div>
-        </div>
-    )
+  const backdropClass = isModalOpen
+    ? 'fade-in bg-black/40 pointer-events-auto'
+    : `fade-out bg-transparent pointer-events-none ${hideOnDefault ? 'hidden' : ''}`
+
+  const animationClass = {
+    top: isModalOpen ? 'slide-in-top' : 'slide-out-top',
+    bottom: isModalOpen ? 'slide-in-bottom' : 'slide-out-bottom',
+    left: isModalOpen ? 'slide-in-left' : 'slide-out-left',
+    right: isModalOpen ? 'slide-in-right' : 'slide-out-right',
+    center: isModalOpen ? 'zoom-in' : 'zoom-out',
+  }[animationDirection]
+
+  return (
+    <div
+      style={{ zIndex }}
+      className={clsx(
+        'cms-modal fixed inset-0 flex items-center justify-center transition-all duration-300',
+        backdropClass,
+        parentDivClassName
+      )}
+    >
+      <div
+        className={clsx(
+          className,
+          'bg-white rounded shadow-lg max-h-[90vh] overflow-y-auto w-3/4 sm:w-full sm:m-4',
+          animationClass
+        )}
+      >
+        {children}
+      </div>
+    </div>
+  )
 }
 
 export default Modal

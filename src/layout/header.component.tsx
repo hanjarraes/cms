@@ -11,60 +11,71 @@ interface IDropdownItem {
 
 const dropdownBankSoal: IDropdownItem[] = [
     {
-        icon: 'ri-cursor-line',
-        title: 'Course',
+        icon: 'ri-book-open-line',
+        title: 'Course List',
         link: '/',
-        description: 'Lihat semua kursus yang tersedia di sistem'
+        description: 'View all available courses in the system'
     },
     {
-        icon: 'ri-folders-line',
-        title: 'Grouping Course',
+        icon: 'ri-folder-line',
+        title: 'Bank Soal',
         link: '/',
-        description: 'Kelompokkan kursus berdasarkan kategori atau topik'
+        description: 'Manage and organize a collection of exam questions'
     },
     {
-        icon: 'ri-question-answer-line',
+        icon: 'ri-questionnaire-line',
         title: 'Quiz',
         link: '/quiz',
-        description: 'Lihat dan kelola semua kuis dalam sistem'
-    },
-    {
-        icon: 'ri-layout-masonry-line',
-        title: 'Grouping Quiz',
-        link: '/',
-        description: 'Kelompokkan kuis sesuai topik atau mata pelajaran'
-    },
-];
-
-
-const dropdownMasterData: IDropdownItem[] = [
-    {
-        icon: 'ri-pie-chart-2-line',
-        title: 'Periode',
-        link: '/',
-        description: 'Atur periode pembelajaran untuk siswa dan kelas'
-    },
-    {
-        icon: 'ri-cursor-line',
-        title: 'Jurusan',
-        link: '/',
-        description: 'Kelola daftar jurusan dan program studi yang tersedia'
-    },
-    {
-        icon: 'ri-folders-line',
-        title: 'Student',
-        link: '/',
-        description: 'Lihat dan kelola data seluruh siswa di sistem'
-    },
-    {
-        icon: 'ri-question-answer-line',
-        title: 'Student Grouping',
-        link: '/quiz',
-        description: 'Buat dan kelola pengelompokan siswa berdasarkan kriteria tertentu'
+        description: 'Create and manage quizzes for student assessment'
     }
 ];
 
-const menuItems = ['Forum', 'User Management'];
+
+const dropdownSetting: IDropdownItem[] = [
+    {
+        icon: 'ri-book-2-line',
+        title: 'Course',
+        link: '/',
+        description: 'Manage the list of courses offered in the system'
+    },
+    {
+        icon: 'ri-calendar-line',
+        title: 'Periode',
+        link: '/periode',
+        description: 'Set academic periods for learning schedules'
+    },
+    {
+        icon: 'ri-graduation-cap-line',
+        title: 'Major',
+        link: '/',
+        description: 'Manage available majors and study programs'
+    },
+    {
+        icon: 'ri-building-4-line',
+        title: 'Departement',
+        link: '/',
+        description: 'Organize departments within the institution'
+    },
+    {
+        icon: 'ri-user-line',
+        title: 'Student',
+        link: '/student',
+        description: 'Manage student profiles and academic records'
+    },
+    {
+        icon: 'ri-user-shared-line',
+        title: 'Student Grouping',
+        link: '/',
+        description: 'Group students based on criteria or classes'
+    },
+    {
+        icon: 'ri-user-settings-line',
+        title: 'Staff',
+        link: '/',
+        description: 'Manage staff members and their roles'
+    }
+];
+
 
 export default function Header(): React.ReactElement {
     const nav = useNavigate()
@@ -99,6 +110,21 @@ export default function Header(): React.ReactElement {
                                 </div>
                             </Dropdown.Item>
                         ))}
+                    </div>
+                </Dropdown>
+                <Dropdown label="Setting" inline arrowIcon={true}>
+                    <div className="w-[20rem] p-2">
+                        {dropdownSetting.map((item, index) => (
+                            <Dropdown.Item key={index} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <div className="flex items-center gap-3" onClick={() => nav(item.link)}>
+                                    <i className={`text-lg ${item.icon} bg-gray-200 dark:bg-gray-700 px-3 py-2 rounded-md`} />
+                                    <div className='flex flex-col items-start'>
+                                        <p className="font-semibold text-sm text-gray-800 dark:text-white">{item.title}</p>
+                                        <p className="text-left text-xs text-gray-500 dark:text-gray-400">{item.description}</p>
+                                    </div>
+                                </div>
+                            </Dropdown.Item>
+                        ))}
                         <div className="grid grid-cols-2 divide-x mt-2 border-t pt-2 border-gray-200 dark:border-gray-600">
                             <a
                                 href="#"
@@ -117,26 +143,6 @@ export default function Header(): React.ReactElement {
                         </div>
                     </div>
                 </Dropdown>
-                <Dropdown label="Master Data" inline arrowIcon={true}>
-                    <div className="w-[20rem] p-2">
-                        {dropdownMasterData.map((item, index) => (
-                            <Dropdown.Item key={index} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <div className="flex items-center gap-3" onClick={() => nav(item.link)}>
-                                    <i className={`text-lg ${item.icon} bg-gray-200 dark:bg-gray-700 px-3 py-2 rounded-md`} />
-                                    <div className='flex flex-col items-start'>
-                                        <p className="font-semibold text-sm text-gray-800 dark:text-white">{item.title}</p>
-                                        <p className="text-left text-xs text-gray-500 dark:text-gray-400">{item.description}</p>
-                                    </div>
-                                </div>
-                            </Dropdown.Item>
-                        ))}
-                    </div>
-                </Dropdown>
-                {menuItems.map((item, index) => (
-                    <Navbar.Link href="#" key={index}>
-                        {item}
-                    </Navbar.Link>
-                ))}
             </Navbar.Collapse>
         </Navbar>
     );

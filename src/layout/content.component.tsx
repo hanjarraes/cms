@@ -5,5 +5,9 @@ export default function Content({
 }: {
     children: React.ReactElement
 }): React.ReactElement {
-    return <div>{children}</div>
+    return (
+        <div className='hh'>
+            {children}
+        </div>
+    )
 }
