@@ -2,15 +2,8 @@
     @apply w-full flex relative;
 }
 
-.inputParent-style .input-group {
-    @apply border rounded;
-}
-.inputParent-style .input-group input {
-    @apply flex-1  border-none;
-}
-
 .inputParent-style label div {
-    @apply w-fit  ml-2 z-[1] text-[14px] absolute;
+    @apply w-fit  ml-2 z-[1] text-[12px] absolute;
 }
 
 .inputParent-style label p {
@@ -36,8 +29,8 @@
 }
 
 .inputParent-style input {
-    @apply h-10;
-    @apply border rounded-lg text-[14px];
+    @apply h-[35px];
+    @apply border rounded-md text-[12px];
     @apply focus:!ring-transparent;
     @apply !w-full;
     border-color: var(--gray-v3);

@@ -13,6 +13,7 @@ export interface ITextarea {
     required?: boolean
     resize?: boolean
     rows?: number
+    height?:number
     [key: string]: any
     disabledVariant?: 'white' | 'gray'
 }

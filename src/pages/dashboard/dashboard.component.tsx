@@ -82,7 +82,7 @@ const Dashboard = () => {
                                 <p className="text-sm text-gray-500">@dave_obrien</p>
                             </div>
                         </div>
-                        <i className="ri-pencil-line text-[20px] rounded-full shadow-md cursor-pointer px-3 py-2 hover:bg-[--blue-v3] " />
+                        <i className="ri-pencil-line text-[20px] rounded-full shadow-md cursor-pointer px-3 py-2 hover:bg-[--info-v3] " />
                     </div>
 
                     <div className="flex gap-2">

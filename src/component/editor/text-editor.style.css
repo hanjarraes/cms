@@ -1,0 +1,88 @@
+/* Container Editor */
+.editor-container {
+    border: 1px solid #e5e7eb;
+    /* Tailwind gray-200 */
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* Menu Toolbar */
+.menu-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    /* Tailwind gray-100 */
+    padding-bottom: 0.5rem;
+}
+
+/* Button Toolbar */
+.menu-bar button {
+    background-color: transparent;
+    border: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    color: #374151;
+    /* Tailwind gray-700 */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.menu-bar button:hover {
+    background-color: var(--gray-v2);
+}
+
+.menu-bar button.active {
+    background-color: var(--info-v5);
+    color: white;
+}
+
+/* Editor Content */
+.editor-content {
+    min-height: 250px;
+    font-size: 16px;
+    line-height: 1.75;
+    outline: none;
+}
+
+.editor-content p {
+    margin-bottom: 0.75rem;
+}
+
+.editor-content ul,
+.editor-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.editor-content h1,
+.editor-content h2 {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.editor-content h1 {
+    font-size: 24px;
+}
+
+.editor-content h2 {
+    font-size: 20px;
+}
+
+.editor-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.editor-content .tiptap {
+    border:1px solid var(--gray-v2);
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 350px;
+}

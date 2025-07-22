@@ -11,7 +11,7 @@ const CustomToast: React.FC<IToastProps> = ({
 }) => {
     return (
         <div
-            className={`css-custom-toast-container flex ml-3 p-2 themes-bg-white text-gray-700`}
+            className={`css-custom-toast-container flex ml-3 p-2 bg-white text-gray-700`}
             data-testid={dataTestId}
         >
             <div>
@@ -36,7 +36,7 @@ export const Toast = ({ header, message, type }: IToastProps) => {
     const getBackgroundColor = () => {
         switch (type) {
             case 'success':
-                return '#07bc0c' // Green for success
+                return '#07bc0c' // success for success
             case 'error':
                 return '#e74c3c' // Red for error
             case 'info':

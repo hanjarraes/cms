@@ -1,26 +1,41 @@
 import { useEffect, useRef, useState } from 'react'
-import { ITextarea } from './text-area.interface'
+import Tooltip from '../tooltip/tooltip.component'
 import './text-area.style.css'
+import { ITextarea } from './text-area.interface'
 
-const Textarea = ({
+const TextArea = ({
     disabled = false,
     readonly = false,
     required = false,
-    resize = false,
+    isError = false,
     disabledVariant = 'gray',
-    maxLength = 225,
-    containerClassName = '', // Ubah properti parentTextareaClassName menjadi containerClassName
-    useUppercaseLabel = false,
+    useUppercaseLabel,
+    parentInputClassName,
+    onIconClick,
+    dataTestId = '',
+    rows = 4,
+    height = 100,
     ...props
-}: ITextarea) => {
+}: ITextarea & { rows?: number }) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const [focus, setFocus] = useState(false)
     const showLabelClass = !props.label || props.label === '' ? 'hidden' : ''
-    const showAdditionalInfo = !props.additionalInfo || props.additionalInfo === '' ? 'hidden' : 'label-down'
     const isRequired = required ? 'required' : ''
+    const labelFocus = focus ? 'text-[--info-v5]' : ''
     const isDisabled = disabled ? `disabled-${disabledVariant}` : ''
-    const isFocus = focus ? 'text-[blue-v5]' : ''
-    const isResize = !resize ? 'none' : 'both'
+    const iconBg = disabled ? `disabled-gray` : `disabled-white`
+    const iconWithAction = ['ri-file-copy-line', 'ri-mail-line']
+    const iconClassDisabled =
+        props?.icon &&
+            disabled &&
+            props.value &&
+            iconWithAction.includes(props?.icon)
+            ? 'cursor-pointer'
+            : 'opacity-70'
+    const dataTestIdComponent = dataTestId ? `${dataTestId}_TEXTAREA` : ''
+
+    const labelBgColor = disabled ? 'bg-[--gray-v1]' : 'bg-white'
+
     const handleFocusEvent = () => {
         setFocus(true)
     }
@@ -43,42 +58,78 @@ const Textarea = ({
     }, [])
 
     return (
-        <div className={`textareaParent-style ${containerClassName} `}>
-            {/* Menggunakan containerClassName di sini */}
-            <label className={`${showLabelClass} text-[gray-v5]`}>
-                <div>
-                    <p className={`${isRequired} ${isFocus}`}>
+        <div className={` ${parentInputClassName || ''} inputParent-style`}>
+            <label className={`${showLabelClass}`}>
+                <div className={`inputLabelDiv-style !${labelBgColor}`}>
+                    <p
+                        className={`${isRequired} ${labelFocus} ${isError && '!text-[--danger-v5]'
+                            }`}
+                    >
                         {useUppercaseLabel
                             ? props.label?.toUpperCase()
                             : props.label}
                     </p>
                 </div>
             </label>
-            <textarea
-                {...props}
-                ref={textareaRef}
-                disabled={disabled}
-                className={`${props.className} ${isDisabled}`}
-                placeholder={props.placeholder}
-                value={props.value}
-                readOnly={readonly}
-                required={required}
-                maxLength={maxLength}
-                onChange={(e) => {
-                    if (props.onChange) props.onChange(e)
-                }}
-                onFocus={handleFocusEvent}
-                style={{ resize: isResize }}
-            />
-            <label className={`${showAdditionalInfo} text-[gray-v5]`}>
-                <div>
-                    <p className={`${isRequired} ${isFocus}`}>
-                        {props.additionalInfo}
-                    </p>
-                </div>
-            </label>
+
+            <div
+                className={`relative w-full bg-white ${disabled && 'bg-[--gray-v1]'
+                    }`}
+                id={props?.id}
+            >
+                <textarea
+                    {...props}
+                    ref={textareaRef}
+                    disabled={disabled}
+                    className={`${props.className} ${isDisabled} ${isError && '!border-[--danger-v5]'
+                        } w-full resize-none rounded-md border px-3 py-2`}
+                    placeholder={props.placeholder}
+                    rows={rows}
+                    style={{ height: height }}
+                    value={disabled && !props.value ? '-' : props.value}
+                    readOnly={readonly}
+                    onChange={(e) => {
+                        if (props.onChange) props.onChange(e)
+                    }}
+                    onFocus={(e) => {
+                        handleFocusEvent()
+                        props.onFocus && props.onFocus(e)
+                    }}
+                    data-testid={dataTestIdComponent}
+                />
+
+                {props?.icon && (
+                    <div
+                        className={`input-icon absolute top-2 right-2 flex items-center justify-center ${onIconClick && 'cursor-pointer'} ${iconBg}`}
+                    >
+                        {props.tooltipIcon ? (
+                            <Tooltip
+                                text={props.tooltipIcon.text}
+                                customText={props.tooltipIcon.customText}
+                                isShow
+                                isHover
+                                children={
+                                    <i
+                                        className={`${props.icon} ${iconClassDisabled}`}
+                                        onClick={() => {
+                                            onIconClick && onIconClick()
+                                        }}
+                                    ></i>
+                                }
+                            />
+                        ) : (
+                            <i
+                                className={`${props.icon} ${iconClassDisabled}`}
+                                onClick={() => {
+                                    onIconClick && onIconClick()
+                                }}
+                            ></i>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
 
-export default Textarea
+export default TextArea

@@ -1,7 +1,7 @@
 
 const Page404 = () => {
     return (
-        <div className="w-screen h-screen themes-bg-brand-v2 bg-opacity-40 flex justify-center py-[100px]">
+        <div className="w-screen h-screen bg-[--info-v2] bg-opacity-40 flex justify-center py-[100px]">
             <div className="aspect-w-16 aspect-h-9 p-4 max-w-[600px] text-center">
            
                 <div className="pt-12 font-bold text-size-XL">

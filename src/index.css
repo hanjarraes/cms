@@ -16,37 +16,48 @@
     --gray-v9: #20384e;
 
     /* ------ Basic Main Status ------ */
-    --blue-v1: #f0fafe;
-    --blue-v2: #cceffc;
-    --blue-v3: #99dffa;
-    --blue-v4: #66d0f7;
-    --blue-v5: #00b0f2;
-    --blue-v6: #008dc2;
-    --blue-v7: #006a91;
-    --red-v1: #fcdae2;
-    --red-v2: #f691a9;
-    --red-v3: #f04770;
-    --red-v4: #902b43;
-    --yellow-v1: #fff6e1;
-    --yellow-v2: #ffe3a4;
-    --yellow-v3: #ffd167;
-    --yellow-v4: #b28f3e;
-    --green-v1: #cdf7ec;
-    --green-v2: #6fdfc1;
-    --green-v3: #10d3a0;
-    --green-v4: #048160;
-    --violet-v1: #eddafc;
-    --violet-v2: #fcdaf5;
-    --violet-v3: #f047cb;
-    --violet-v4: #a647f0;
+    --info-v1: #f0fafe;
+    --info-v2: #cceffc;
+    --info-v3: #99dffa;
+    --info-v4: #66d0f7;
+    --info-v5: #00b0f2;
+    --info-v6: #008dc2;
+    --info-v7: #006a91;
+    --danger-v1: #fdecf0;
+    --danger-v2: #f9b9c6;
+    --danger-v3: #f68299;
+    --danger-v4: #f24f6f;
+    --danger-v5: #f04770;
+    --danger-v6: #c13a5b;
+    --danger-v7: #8f2b45;
+    --warning-v1: #fff9e8;
+    --warning-v2: #ffecb7;
+    --warning-v3: #ffe087;
+    --warning-v4: #ffd456;
+    --warning-v5: #ffd167;
+    --warning-v6: #d1aa4b;
+    --warning-v7: #a48639;
+    --success-v1: #e0f9f2;
+    --success-v2: #a8eedb;
+    --success-v3: #6ce2be;
+    --success-v4: #35d7a7;
+    --success-v5: #10d3a0;
+    --success-v6: #0ba17c;
+    --success-v7: #087e62;
+    --violet-v1: #fce9fa;
+    --violet-v2: #f7b6ec;
+    --violet-v3: #f383df;
+    --violet-v4: #ef58d3;
+    --violet-v5: #f047cb;
+    --violet-v6: #c038a3;
+    --violet-v7: #8e2a7b;
 
     --white: #ffffff;
     --black: #222222;
-    overflow: hidden;
 }
 
 body {
-    background-color: var(--blue-v1);
+    background-color: var(--info-v1);
     color: var(--black);
 }
 
@@ -91,4 +102,40 @@ body {
     background: transparent;
 }
 
-/* dropdown */
+
+@keyframes animasi-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bg-animasi {
+    background: linear-gradient(-45deg, #ff0099, #493240, #00f0ff, #240b36);
+    background-size: 400% 400%;
+    animation: animasi-gradient 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+/* Optional: noisy/glitchy overlay */
+.bg-animasi::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 1;
+}

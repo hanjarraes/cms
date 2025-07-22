@@ -1,8 +1,8 @@
 import { IRoute } from 'common/common.interface'
+import BankSoal from 'pages/bank-soal/bank-soal.component'
 import Dashboard from 'pages/dashboard/dashboard.component'
-import Periode from 'pages/periode/periode.component'
-import Quiz from 'pages/quiz/quiz.component'
-import Student from 'pages/student/student.component'
+import PartisipanGroup from 'pages/partisipan-group/partisipan-group.component'
+import Partisipan from 'pages/partisipan/partisipan.component'
 
 export const mainRoutes: IRoute[] = [
     {
@@ -11,18 +11,18 @@ export const mainRoutes: IRoute[] = [
         Content: Dashboard,
     },
     {
-        path: '/quiz',
-        text: 'Quiz',
-        Content: Quiz,
+        path: '/partisipan',
+        text: 'Partisipan',
+        Content: Partisipan,
     },
     {
-        path: '/student',
-        text: 'Student',
-        Content: Student,
+        path: '/partisipan-group',
+        text: 'Partisipan',
+        Content: PartisipanGroup,
     },
-    {
-        path: '/periode',
-        text: 'Periode',
-        Content: Periode,
+     {
+        path: '/bank-soal',
+        text: 'Bank Soal',
+        Content: BankSoal,
     },
 ]

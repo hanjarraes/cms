@@ -1,0 +1,113 @@
+.dropDown {
+    @apply text-[12px] rounded-[5px];
+}
+
+.dropdownParent-style {
+    @apply border text-[12px] rounded-[5px];
+    color: var(--loglines-gray-v5);
+    background-color: var(--loglines-white);
+    /* border-color: var(--loglines-gray-v3); */
+    position: relative;
+}
+.dropdownParent-style label {
+    @apply w-fit absolute z-[1];
+    @apply translate-x-2;
+}
+
+.dropdownLabelDiv-style {
+    @apply w-fit;
+    height: 3px;
+    background-color: var(--loglines-gray-v1);
+    padding-bottom: 0px;
+    margin-top: -1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    display: flex;
+}
+
+.dropdownParent-style p {
+    @apply w-fit;
+    @apply text-[12px];
+    @apply -translate-y-2;
+}
+[type='text']:focus,
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+    --tw-ring-color: transparent !important;
+    --tw-ring-shadow: transparent !important;
+}
+
+/* overflow multi value */
+.css-3w2yfm-ValueContainer {
+    max-height: 99px;
+    scrollbar-width: none;
+}
+
+.overflow-option .css-3w2yfm-ValueContainer {
+    overflow: auto !important;
+}
+
+/* icon svg arrow */
+.css-tj5bde-Svg {
+    @apply cursor-pointer;
+}
+
+.css-1nmdiq5-menu {
+    z-index: 99999 !important;
+    box-shadow: none !important;
+}
+
+select.disabled {
+    pointer-events: none;
+    background-color: #ffffff; /* White color */
+    border-color: inherit; /* Inherit the original border color */
+}
+
+.css-1ueq0fw-MenuList {
+    border: none !important;
+}
+
+.select__menu {
+    background-color: transparent;
+    height: 10px;
+}
+
+.select__value-container {
+    @apply !p-0 !pl-2 !flex-nowrap;
+}
+
+.select__multi-value__label {
+    @apply flex items-center;
+}
+.css-12fd0bu-option {
+    width: unset !important;
+}
+
+.css-ew1pwu-option {
+    width: unset !important;
+    overflow-x: hidden !important;
+}
+
+.select__menu-list {
+    overflow-x: hidden !important;
+}
+
+.select__menu-portal {
+    @apply sm:!static;
+}
+
+.filter .select__menu-portal {
+    @apply sm:!fixed;
+}

@@ -26,10 +26,8 @@ export interface IButton
 
 export type IVariantButton =
     | 'default'
-    | 'primary'
-    | 'primary-inverse'
-    | 'primary-v2'
-    | 'primary-v2-inverse'
-    | 'red'
-    | 'red-inverse'
+    | 'info'
+    | 'info-inverse'
+    | 'danger'
+    | 'danger-inverse'
     | 'default-pagination'

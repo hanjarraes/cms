@@ -41,7 +41,7 @@ export default function DatePickerHeader({
                         <i className="ri-arrow-left-s-line"></i>
                     </li>
 
-                    <li className=" font-bold text-[--blue-v5]">
+                    <li className=" font-bold text-[--info-v5]">
                         <label>{moment(currentMonth).format('MMM')}</label>
                     </li>
 
@@ -55,7 +55,7 @@ export default function DatePickerHeader({
                         <i className="ri-arrow-left-s-line"></i>
                     </li>
 
-                    <li className="font-bold text-[--blue-v5]">
+                    <li className="font-bold text-[--info-v5]">
                         <label>{moment(currentMonth).format('YYYY')}</label>
                     </li>
 

@@ -8,6 +8,7 @@ const Input = ({
     disabled = false,
     readonly = false,
     required = false,
+    isError = false,
     type = 'text',
     disabledVariant = 'gray',
     useUppercaseLabel,
@@ -21,7 +22,7 @@ const Input = ({
     const [focus, setFocus] = useState(false)
     const showLabelClass = !props.label || props.label === '' ? 'hidden' : ''
     const isRequired = required ? 'required' : ''
-    const labelFocus = focus ? 'themes-text-brand-v5' : ''
+    const labelFocus = focus ? 'text-[--info-v5]' : ''
     const isDisabled = disabled ? `disabled-${disabledVariant}` : ''
     const iconBg = disabled ? `disabled-gray` : `disabled-white`
     const iconWithAction = ['ri-file-copy-line', 'ri-mail-line']
@@ -38,7 +39,7 @@ const Input = ({
     const dataTestIdComponent = dataTestId ? `${dataTestId}_INPUT` : ''
 
     // control label color
-    const labelBgColor = disabled ? 'themes-bg-gray-v1' : 'bg-white'
+    const labelBgColor = disabled ? 'bg-[--gray-v1]' : 'bg-white'
 
     const handleFocusEvent = () => {
         setFocus(true)
@@ -62,10 +63,10 @@ const Input = ({
     }, [])
 
     return (
-        <div className={` ${parentInputClassName || ''} inputParent-style $`}>
+        <div className={` ${parentInputClassName || ''} inputParent-style`}>
             <label className={`${showLabelClass}`}>
                 <div className={`inputLabelDiv-style !${labelBgColor}`}>
-                    <p className={`${isRequired} ${labelFocus}`}>
+                    <p className={`${isRequired} ${labelFocus} ${isError && '!text-[--danger-v5]'}`}>
                         {useUppercaseLabel
                             ? props.label?.toUpperCase()
                             : props.label}
@@ -74,24 +75,14 @@ const Input = ({
             </label>
 
             <div
-                className={`${props.descriptionValue || props.descriptionValueRight && 'input-group'} flex w-full items-center themes-bg-white ${props.descriptionValue || props.descriptionValueRight && disabled && 'themes-bg-gray-v1'}`}
+                className={`flex w-full items-center bg-white ${disabled && 'bg-[--gray-v1]'}`}
                 id={props?.id}
             >
-                {props.descriptionValue && (
-                    <div
-                        className={`themes-text-gray-v4 text-size-S mx-2 flex item gap-2 `}
-                    >
-                        <div className={`themes-text-gray-v4 text-size-S`}>
-                            {props.descriptionValue}
-                        </div>
-                        <div className="border-r"></div>
-                    </div>
-                )}
                 <input
                     {...props}
                     ref={inputRef}
                     disabled={disabled}
-                    className={`${props.className} ${isDisabled} ${useArrowClass}`}
+                    className={`${props.className} ${isDisabled} ${useArrowClass} ${isError && '!border-[--danger-v5]'}`}
                     placeholder={props.placeholder}
                     type={type}
                     value={disabled && !props.value ? '-' : props.value}
@@ -105,16 +96,6 @@ const Input = ({
                     }}
                     data-testid={dataTestIdComponent}
                 />
-                {props.descriptionValueRight && (
-                    <div
-                        className={`themes-text-gray-v4 text-size-S mx-2 flex item gap-2 `}
-                    >
-                        <div className="border-l"></div>
-                        <div className={`themes-text-gray-v4 text-size-S`}>
-                            {props.descriptionValueRight}
-                        </div>
-                    </div>
-                )}
                 {props?.icon && (
 
                     <div

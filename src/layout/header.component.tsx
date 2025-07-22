@@ -19,54 +19,29 @@ const dropdownBankSoal: IDropdownItem[] = [
     {
         icon: 'ri-folder-line',
         title: 'Bank Soal',
-        link: '/',
+        link: '/bank-soal',
         description: 'Manage and organize a collection of exam questions'
     },
     {
         icon: 'ri-questionnaire-line',
         title: 'Quiz',
         link: '/quiz',
-        description: 'Create and manage quizzes for student assessment'
+        description: 'Create and manage quizzes for partisipan assessment'
     }
 ];
 
-
 const dropdownSetting: IDropdownItem[] = [
     {
-        icon: 'ri-book-2-line',
-        title: 'Course',
-        link: '/',
-        description: 'Manage the list of courses offered in the system'
-    },
-    {
-        icon: 'ri-calendar-line',
-        title: 'Periode',
-        link: '/periode',
-        description: 'Set academic periods for learning schedules'
-    },
-    {
-        icon: 'ri-graduation-cap-line',
-        title: 'Major',
-        link: '/',
-        description: 'Manage available majors and study programs'
-    },
-    {
-        icon: 'ri-building-4-line',
-        title: 'Departement',
-        link: '/',
-        description: 'Organize departments within the institution'
-    },
-    {
         icon: 'ri-user-line',
-        title: 'Student',
-        link: '/student',
-        description: 'Manage student profiles and academic records'
+        title: 'Partisipan',
+        link: '/partisipan',
+        description: 'Manage partisipan profiles and academic records'
     },
     {
         icon: 'ri-user-shared-line',
-        title: 'Student Grouping',
-        link: '/',
-        description: 'Group students based on criteria or classes'
+        title: 'Partisipan Grouping',
+        link: '/partisipan-group',
+        description: 'Group partisipans based on criteria or classes'
     },
     {
         icon: 'ri-user-settings-line',
@@ -75,7 +50,6 @@ const dropdownSetting: IDropdownItem[] = [
         description: 'Manage staff members and their roles'
     }
 ];
-
 
 export default function Header(): React.ReactElement {
     const nav = useNavigate()

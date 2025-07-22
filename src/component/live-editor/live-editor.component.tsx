@@ -25,7 +25,7 @@ const LiveEditor: React.FC = () => {
             {/* Code Editor Section */}
             <div className="grid grid-rows-3 gap-2">
                 {/* HTML Editor */}
-                <div className="bg-[--blue-v2] p-3 rounded shadow-md">
+                <div className="bg-[--info-v2] p-3 rounded shadow-md">
                     <h2 className="text-lg font-semibold">HTML</h2>
                     <Editor
                         height="180px"
@@ -37,7 +37,7 @@ const LiveEditor: React.FC = () => {
                 </div>
 
                 {/* CSS Editor */}
-                <div className="bg-[--blue-v2] p-3 rounded shadow-md">
+                <div className="bg-[--info-v2] p-3 rounded shadow-md">
                     <h2 className="text-lg font-semibold">CSS</h2>
                     <Editor
                         height="180px"
@@ -49,7 +49,7 @@ const LiveEditor: React.FC = () => {
                 </div>
 
                 {/* JavaScript Editor */}
-                <div className="bg-[--blue-v2] p-3 rounded shadow-md">
+                <div className="bg-[--info-v2] p-3 rounded shadow-md">
                     <h2 className="text-lg font-semibold">JavaScript</h2>
                     <Editor
                         height="180px"
@@ -62,7 +62,7 @@ const LiveEditor: React.FC = () => {
             </div>
 
             {/* Live Preview Section */}
-            <div className="bg-[--blue-v2] p-3 rounded flex flex-col  shadow-md">
+            <div className="bg-[--info-v2] p-3 rounded flex flex-col  shadow-md">
                 <h2 className="text-lg font-semibold">Preview</h2>
                 <iframe
                     className="w-full flex-grow bg-white"

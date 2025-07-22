@@ -16,7 +16,7 @@ const MainPage = () => {
         videoRef,
         canvasRef,
         timeLeft,
-        handleFullscreen,
+        // handleFullscreen,
         formatTime,
         setIsRunning,
         handleFileChange,
@@ -31,12 +31,12 @@ const MainPage = () => {
             <div>
                 <video ref={videoRef} autoPlay playsInline style={{ display: "none" }} />
                 <canvas ref={canvasRef} style={{ display: "none" }} />
-                <p style={{ color: isUserPresent ? "green" : "red" }}>
+                <p style={{ color: isUserPresent ? "success" : "red" }}>
                     {isUserPresent ? "✅ User is present" : "⚠️ No user detected!"}
                 </p>
             </div>
             <div className="grid grid-cols-3 justify-between items-center bg-[--white] px-5 py-2 shadow-lg">
-                <div className="flex w-fit gap-2 items-center bg-[--blue-v5] text-[--white] rounded-md pr-3 pl-2">
+                <div className="flex w-fit gap-2 items-center bg-[--info-v5] text-[--white] rounded-md pr-3 pl-2">
                     <i className="ri-timer-line text-[24px]" />
                     <div onClick={() => setIsRunning(true)}>{formatTime(timeLeft)}</div>
                 </div>
@@ -45,14 +45,14 @@ const MainPage = () => {
                     <Button
                         onClick={handlePrevious}
                         disabled={currentIndex === 0}
-                        variant="primary-inverse"
+                        variant="info-inverse"
                         className="w-[100px]"
                         label="Previous"
                     />
                     <Button
                         onClick={handleNext}
                         disabled={currentIndex === dummyQuestions.length - 1}
-                        variant="primary"
+                        variant="info"
                         className="w-[100px]"
                         label="Next"
                     />
@@ -65,7 +65,7 @@ const MainPage = () => {
                             return (
                                 <div key={`number-${idx}`}
                                     onClick={() => setCurrentIndex(idx)}
-                                    className={`${currentIndex === idx ? 'bg-[--blue-v5]' : 'bg-[--blue-v3]'} text-[--white] h-[25px] w-[25px] flex items-center justify-center rounded-md font-bold text-[14px] cursor-pointer hover:bg-[--blue-v6]`}>
+                                    className={`${currentIndex === idx ? 'bg-[--info-v5]' : 'bg-[--info-v3]'} text-[--white] h-[25px] w-[25px] flex items-center justify-center rounded-md font-bold text-[14px] cursor-pointer hover:bg-[--info-v6]`}>
                                     {idx + 1}
                                 </div>
                             )
@@ -74,7 +74,7 @@ const MainPage = () => {
                 </div>
                 <div className={`${currentQuestion.type === 'codeText' ? 'col-span-3' : 'col-span-4' }  bg-[--white] rounded-lg shadow-lg p-6 h-full`}>
                     <div className="flex justify-center mb-5">
-                        <div className="bg-[--blue-v5] text-[--white] h-[45px] w-[45px] flex items-center justify-center rounded-full font-bold text-[20px]">
+                        <div className="bg-[--info-v5] text-[--white] h-[45px] w-[45px] flex items-center justify-center rounded-full font-bold text-[20px]">
                             {currentIndex + 1}
                         </div>
                     </div>
@@ -198,7 +198,7 @@ const MainPage = () => {
                 <div className="flex flex-1 flex-col">
                     {/* Header */}
                     <div className="flex font-bold text-size-L justify-between p-4 items-center border-b">
-                        <div className="text-[--red-v3] flex gap-2 items-center">
+                        <div className="text-[--danger-v3] flex gap-2 items-center">
                             <i className="ri-error-warning-line text-[24px]" />
                             Warning !!
                         </div>
@@ -211,7 +211,7 @@ const MainPage = () => {
                             ></i>
                         </div>
                     </div>
-                    <div className="p-4 text-[--red-v3] ">
+                    <div className="p-4 text-[--danger-v3] ">
                         Your mouse activity or user presence is no longer detected in the application. <span className="font-bold">Please return to continue.</span>
                     </div>
                 </div>

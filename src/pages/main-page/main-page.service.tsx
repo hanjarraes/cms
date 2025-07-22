@@ -4,7 +4,6 @@ import { useModal } from "component/modal/modal.service";
 import * as blazeface from "@tensorflow-models/blazeface";
 import "@tensorflow/tfjs";
 
-
 const useMainPages = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,7 +29,7 @@ const useMainPages = () => {
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { value, type, name } = event.target;
+        const { value, type } = event.target;
 
         // Type assertion untuk input checkbox
         const isChecked = (event.target as HTMLInputElement).checked;

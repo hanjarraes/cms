@@ -1,10 +1,10 @@
 
 
 export const stats = [
-    { title: 'Students', value: '1,024', icon: 'ri-user-line', color: '--blue-v5' },
-    { title: 'Courses', value: '58', icon: 'ri-book-line', color: '--yellow-v3' },
+    { title: 'Partisipans', value: '1,024', icon: 'ri-user-line', color: '--info-v5' },
+    { title: 'Courses', value: '58', icon: 'ri-book-line', color: '--warning-v3' },
     { title: 'Courses', value: '58', icon: 'ri-book-line', color: '--violet-v3' },
-    { title: 'Completed', value: '312', icon: 'ri-check-double-line', color: '--green-v3' },
+    { title: 'Completed', value: '312', icon: 'ri-check-double-line', color: '--success-v3' },
 ];
 
 export const chartData = [

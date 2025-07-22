@@ -8,16 +8,15 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
     readonly?: boolean
     required?: boolean
     disabled?: boolean
+    isError?: boolean
     icon?: string
     parentInputClassName?: string
-    descriptionValue?: string
-    descriptionValueRight?: string
     disabledVariant?: 'white' | 'gray'
     onIconClick?: () => void
     useArrow?: boolean // only works if type input is number
     dataTestId?: string
-    tooltipIcon?:{
-        customText:ReactNode
-        text:string
+    tooltipIcon?: {
+        customText: ReactNode
+        text: string
     }
 }

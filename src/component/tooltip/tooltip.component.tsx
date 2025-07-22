@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import './tooltip.style.css'
 
 const Tooltip = ({
@@ -8,6 +8,7 @@ const Tooltip = ({
     isHover,
     children,
     className,
+    parentInputClassName = '',
 }: {
     text: string
     isShow: boolean
@@ -15,6 +16,7 @@ const Tooltip = ({
     children: ReactNode
     customText?: ReactNode
     className?: string
+    parentInputClassName?: string
 }) => {
     const [show, setShow] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
@@ -32,7 +34,7 @@ const Tooltip = ({
     return (
         <>
             <div
-                className="w-full relative"
+                className={`w-full relative ${parentInputClassName}`}
                 onMouseEnter={isHover ? handleMouseEnter : undefined}
                 onMouseLeave={isHover ? handleMouseLeave : undefined}
             >

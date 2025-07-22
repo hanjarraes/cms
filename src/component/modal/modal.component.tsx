@@ -34,7 +34,7 @@ const Modal = ({
     <div
       style={{ zIndex }}
       className={clsx(
-        'cms-modal fixed inset-0 flex items-center justify-center transition-all duration-300',
+        'cms-modal fixed inset-0 flex items-center justify-center transition-all duration-300 !m-0',
         backdropClass,
         parentDivClassName
       )}
