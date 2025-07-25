@@ -87,7 +87,6 @@ const Dashboard = () => {
 
                     <div className="flex gap-2">
                         {stats.map((item, index) => {
-                            console.log(`text-[${item.color}]`)
                             return (
                                 <div
                                     key={index}

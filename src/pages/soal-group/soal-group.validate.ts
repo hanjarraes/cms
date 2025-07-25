@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const schema = z
     .object({
+        id: z.string().min(1, 'title wajib diisi'),
         title: z.string().min(1, 'title wajib diisi'),
         desc: z.string().min(1, 'desc wajib diisi'),
         tag: z.string().min(1, 'tag wajib diisi'),
@@ -32,6 +33,6 @@ export const initialSoal = {
     title: '',
     desc: '',
     tag: '',
-    kategori: undefined,
+    kategori: { value: '', label: '' },
     options: []
 }

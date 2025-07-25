@@ -12,15 +12,15 @@ interface IDropdownItem {
 const dropdownBankSoal: IDropdownItem[] = [
     {
         icon: 'ri-book-open-line',
-        title: 'Course List',
-        link: '/',
-        description: 'View all available courses in the system'
-    },
-    {
-        icon: 'ri-folder-line',
         title: 'Bank Soal',
         link: '/bank-soal',
         description: 'Manage and organize a collection of exam questions'
+    },
+    {
+        icon: 'ri-book-open-line',
+        title: 'Soal Group',
+        link: '/soal-group',
+        description: 'View all available courses in the system'
     },
     {
         icon: 'ri-questionnaire-line',

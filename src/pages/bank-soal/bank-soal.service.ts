@@ -9,6 +9,7 @@ const useBankSoal = (): IUseBankSoal => {
     const [dataBankSoal, setDataBankSoal] = useState<IBankSoal | null>(null)
     const [isConfirm, setIsConfirm] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
+    const [option, setOption] = useState('')
     const modalServiceCreate = useModal()
 
     const hendleSave = (data: IBankSoal) => {
@@ -37,6 +38,8 @@ const useBankSoal = (): IUseBankSoal => {
     return {
         isConfirm,
         setIsConfirm,
+        option,
+        setOption,
         modalServiceCreate,
         dataBankSoal,
         isDelete,

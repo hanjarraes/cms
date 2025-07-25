@@ -6,6 +6,7 @@ import Dropdown from 'component/dropdown/dropdown.component';
 import Tooltip from 'component/tooltip/tooltip.component';
 import { IFormPartisipan, IUsePartisipan } from '../partisipan.interface';
 import { Switch } from 'component/switch/switch.component';
+import { IDropdownItem } from 'component/dropdown/dropdown.interface';
 
 
 const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
@@ -14,6 +15,7 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
     const {
         modalServiceCreate,
         reactForm,
+        setIsConfirm,
         dataPartisipan,
         setDataPartisipan
     } = service;
@@ -22,7 +24,6 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
     const {
         watch,
         handleSubmit,
-        register,
         setValue,
         formState: { errors },
     } = reactForm
@@ -32,12 +33,13 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
     const onSubmit = (values: IFormPartisipan) => {
         setDataPartisipan(null)
         modalServiceCreate.closeModalHandling()
+        setIsConfirm(true)
         reactForm.reset({
             id: '',
             nama: '',
             email: '',
             noTelepon: '',
-            kategori: '',
+            kategori: undefined,
             jenisKelamin: '',
         });
 
@@ -56,7 +58,7 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
                             nama: '',
                             email: '',
                             noTelepon: '',
-                            kategori: '',
+                            kategori: undefined,
                             jenisKelamin: '',
                         });
                         setDataPartisipan(null)
@@ -72,7 +74,7 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
                         useUppercaseLabel
                         isError={errors.id && true}
                         value={watch('id')}
-                        {...register('id')}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue('id', e.target.value)}
                     />
                     <Input
                         label='Nama'
@@ -80,7 +82,7 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
                         useUppercaseLabel
                         isError={errors.nama && true}
                         value={watch('nama')}
-                        {...register('nama')}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue('nama', e.target.value)}
                     />
                     <Input
                         label='Email'
@@ -88,7 +90,7 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
                         useUppercaseLabel
                         isError={errors.email && true}
                         value={watch('email')}
-                        {...register('email')}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue('email', e.target.value)}
                     />
                     <PhoneInput
                         label='No Telepon'
@@ -111,14 +113,10 @@ const PartisipanCreate = ({ service }: { service: IUsePartisipan }) => {
                         isClearable
                         isSearchable
                         useUppercaseLabel
-                        value={
-                            watch('kategori')
-                                ? { label: watch('kategori'), value: watch('kategori') }
-                                : null
-                        }
-                        onChange={(option: { label: string; value: string } | null) =>
-                            setValue('kategori', option?.value ?? '')
-                        }
+                        value={watch('kategori') as IDropdownItem<string>}
+                        onClick={(e) => {
+                            setValue('kategori', e as IDropdownItem<string>)
+                        }}
                     />
                     <div className='flex items-start justify-between'>
                         <div>

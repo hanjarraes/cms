@@ -11,11 +11,6 @@ const usePartisipan = (): IUsePartisipan => {
     const [isDelete, setIsDelete] = useState(false);
     const modalServiceCreate = useModal()
 
-    const hendleSave = (data: IPartisipan) => {
-        modalServiceCreate.closeModalHandling()
-        setIsConfirm(true);
-    }
-
     const reactForm = useForm<IFormPartisipan>({
         resolver: zodResolver(schema),
         defaultValues: initialPartisipan,
@@ -28,7 +23,10 @@ const usePartisipan = (): IUsePartisipan => {
                 nama: dataPartisipan.nama || '',
                 email: dataPartisipan.emailPribadi || '',
                 noTelepon: dataPartisipan.noTelepon || '',
-                kategori: dataPartisipan.pekerjaan || '',
+                kategori: {
+                    value: dataPartisipan.pekerjaan,
+                    label: dataPartisipan.pekerjaan
+                },
                 jenisKelamin: dataPartisipan.jenisKelamin || '',
             });
         }
@@ -43,7 +41,6 @@ const usePartisipan = (): IUsePartisipan => {
         reactForm,
         setIsDelete,
         setDataPartisipan,
-        hendleSave,
     }
 }
 

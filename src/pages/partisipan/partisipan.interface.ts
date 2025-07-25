@@ -1,3 +1,4 @@
+import { IDropdownItem } from "component/dropdown/dropdown.interface";
 import { IUseModal } from "component/modal/modal.service";
 import { UseFormReturn } from "react-hook-form";
 
@@ -36,7 +37,7 @@ export interface IFormPartisipan {
   nama: string
   email: string
   noTelepon: string
-  kategori: string
+  kategori: IDropdownItem<string>
   jenisKelamin: string
 }
 
@@ -49,5 +50,4 @@ export interface IUsePartisipan {
   setIsDelete: (e: boolean) => void
   setIsConfirm: (e: boolean) => void
   setDataPartisipan: (e: IPartisipan | null) => void
-  hendleSave: (data: IPartisipan) => void
 }

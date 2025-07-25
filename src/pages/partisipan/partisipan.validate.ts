@@ -5,7 +5,12 @@ export const schema = z.object({
     nama: z.string().min(1, 'Nama wajib diisi'),
     email: z.string().email('Email tidak valid'),
     noTelepon: z.string().min(1, 'No Telepon wajib diisi'),
-    kategori: z.string().min(1, 'Kategori wajib dipilih'),
+    kategori: z.object({
+        label: z.string().or(z.number())
+            .refine((val: string | number) => `${val}`.length > 0, 'kategori.label wajib diisi'),
+        value: z.string().or(z.number())
+            .refine((val: string | number) => `${val}`.length > 0, 'kategori.value wajib diisi'),
+    }),
     jenisKelamin: z.string().min(1, 'Jenis Kelamin wajib dipilih'),
 });
 
@@ -14,6 +19,6 @@ export const initialPartisipan = {
     nama: '',
     email: '',
     noTelepon: '',
-    kategori: '',
+    kategori: undefined,
     jenisKelamin: '',
 }
