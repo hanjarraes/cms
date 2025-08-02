@@ -2,6 +2,7 @@ import { IBankSoal } from "./bank-soal.interface";
 
 export const dummyBankSoal: IBankSoal[] = [
   {
+    id: "1",
     title: "Soal Matematika Dasar",
     desc: "Kumpulan soal aritmatika dasar untuk siswa kelas 4–6.",
     tag: [
@@ -14,6 +15,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "2",
     title: "Pemahaman Teks Bacaan",
     desc: "Evaluasi kemampuan membaca dan memahami bacaan pendek.",
     tag: [
@@ -26,6 +28,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "3",
     title: "Soal IPA: Sistem Pencernaan",
     desc: "Latihan soal seputar sistem pencernaan pada manusia.",
     tag: [
@@ -38,6 +41,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "4",
     title: "Logika dan Penalaran",
     desc: "Tes logika dasar dan kemampuan penalaran matematis.",
     tag: [
@@ -50,6 +54,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "5",
     title: "Soal Sejarah Indonesia",
     desc: "Menguji pengetahuan tentang masa kemerdekaan RI.",
     tag: [
@@ -62,6 +67,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "6",
     title: "Soal Fisika: Gaya & Gerak",
     desc: "Pertanyaan dasar tentang hukum Newton dan gaya.",
     tag: [
@@ -73,7 +79,8 @@ export const dummyBankSoal: IBankSoal[] = [
       { name: "Level SMP", type: "Level" },
     ],
   },
-   {
+  {
+    id: "7",
     title: "Soal Matematika Dasar",
     desc: "Kumpulan soal aritmatika dasar untuk siswa kelas 4–6.",
     tag: [
@@ -86,6 +93,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "8",
     title: "Pemahaman Teks Bacaan",
     desc: "Evaluasi kemampuan membaca dan memahami bacaan pendek.",
     tag: [
@@ -98,6 +106,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "9",
     title: "Soal IPA: Sistem Pencernaan",
     desc: "Latihan soal seputar sistem pencernaan pada manusia.",
     tag: [
@@ -110,6 +119,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "10",
     title: "Logika dan Penalaran",
     desc: "Tes logika dasar dan kemampuan penalaran matematis.",
     tag: [
@@ -122,6 +132,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "11",
     title: "Soal Sejarah Indonesia",
     desc: "Menguji pengetahuan tentang masa kemerdekaan RI.",
     tag: [
@@ -134,6 +145,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "12",
     title: "Soal Fisika: Gaya & Gerak",
     desc: "Pertanyaan dasar tentang hukum Newton dan gaya.",
     tag: [
@@ -145,7 +157,8 @@ export const dummyBankSoal: IBankSoal[] = [
       { name: "Level SMP", type: "Level" },
     ],
   },
-   {
+  {
+    id: "13",
     title: "Soal Matematika Dasar",
     desc: "Kumpulan soal aritmatika dasar untuk siswa kelas 4–6.",
     tag: [
@@ -158,6 +171,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "14",
     title: "Pemahaman Teks Bacaan",
     desc: "Evaluasi kemampuan membaca dan memahami bacaan pendek.",
     tag: [
@@ -170,6 +184,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "15",
     title: "Soal IPA: Sistem Pencernaan",
     desc: "Latihan soal seputar sistem pencernaan pada manusia.",
     tag: [
@@ -182,6 +197,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "16",
     title: "Logika dan Penalaran",
     desc: "Tes logika dasar dan kemampuan penalaran matematis.",
     tag: [
@@ -194,6 +210,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "17",
     title: "Soal Sejarah Indonesia",
     desc: "Menguji pengetahuan tentang masa kemerdekaan RI.",
     tag: [
@@ -206,6 +223,7 @@ export const dummyBankSoal: IBankSoal[] = [
     ],
   },
   {
+    id: "18",
     title: "Soal Fisika: Gaya & Gerak",
     desc: "Pertanyaan dasar tentang hukum Newton dan gaya.",
     tag: [

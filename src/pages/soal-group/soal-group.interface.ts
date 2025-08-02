@@ -1,5 +1,6 @@
 import { IDropdownItem } from "component/dropdown/dropdown.interface";
 import { IUseModal } from "component/modal/modal.service";
+import { IBankSoal } from "pages/bank-soal/bank-soal.interface";
 import { UseFormReturn } from "react-hook-form";
 import { NavigateFunction } from "react-router-dom";
 
@@ -18,9 +19,12 @@ export interface IFormSoalGroup {
   id: string
   title: string
   desc: string
-  tag: string
-  kategori: IDropdownItem<string>
-  options?: string[]
+  tag: IDropdownItem<string>
+}
+export interface IFormSoalGroupNonId {
+  title: string
+  desc: string
+  tag: IDropdownItem<string>
 }
 
 export interface ISoalGroupDnd {
@@ -32,7 +36,7 @@ export interface ISoalGroupDnd {
 export interface IColumnData {
   id: number;
   title: string;
-  items: IFormSoalGroup[];
+  items: IBankSoal[];
 }
 
 export interface ISoalGroupState {

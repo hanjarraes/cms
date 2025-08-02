@@ -2,27 +2,24 @@ import Button from 'component/button/button.component';
 import Input from 'component/input/input.component';
 import { useState } from 'react';
 import Card from 'component/card/card.component';
-import Modal from 'component/modal/modal.component';
-import { dummyPartisipanGroups } from './partisipan-group.dummy';
 import ModalToast from 'component/modal-massage/modal-massage';
-import usePartisipanGroup from './partisipan-group.service';
+import useQuizDetails from './quiz-details.service';
 
-import PartisipanGroupCreate from './create/partisipan-create.component';
+import { dummyBankSoal } from 'pages/bank-soal/bank-soal.dummy';
+import { dummyPartipanData } from 'pages/partisipan-group/partisipan-group.dummy';
 
-const PartisipanGroup = () => {
+const QuizDetails = () => {
     const [search, setSearch] = useState('');
 
-    const filteredQuizzes = dummyPartisipanGroups.filter((item) =>
+    const filteredQuizzes = dummyBankSoal.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
-    const service = usePartisipanGroup()
+    const service = useQuizDetails()
     const {
         modalServiceCreate,
         isConfirm,
         isDelete,
-        dataPartisipanGroup,
         setIsDelete,
-        setDataPartisipanGroup,
         setIsConfirm,
     } = service
 
@@ -31,7 +28,7 @@ const PartisipanGroup = () => {
             <div className="max-w-5xl  mx-auto space-y-3">
                 <Card>
                     <div className='flex justify-between items-center gap-2 px-2'>
-                        <div className='text-[24px] font-bold'> Partisipan Group </div>
+                        <div className='text-[24px] font-bold'> Quiz Matematika Dassar </div>
                         <div className='flex justify-between gap-2'>
                             <Input
                                 icon='ri-search-line'
@@ -59,7 +56,6 @@ const PartisipanGroup = () => {
                                 className='p-4'
                                 animated
                                 onClick={() => {
-                                    setDataPartisipanGroup(item)
                                 }}
                             >
                                 <div className="flex justify-between items-start gap-5">
@@ -69,15 +65,8 @@ const PartisipanGroup = () => {
                                     <div className='flex w-full items-start gap-3'>
                                         <div className="flex-1">
                                             <h2 className="text-xl font-bold text-gray-800">{item.title}</h2>
-                                            <p className="text-sm text-gray-500">{item.description}</p>
+                                            <p className="text-sm text-gray-500">{item.desc}</p>
                                         </div>
-                                    </div>
-                                    <div className='text-[24px] flex gap-2'>
-                                        <i className="ri-delete-bin-line hover:text-[--danger-v5]" onClick={() => setIsDelete(true)} />
-                                        <i className="ri-edit-2-line  hover:text-[--info-v5]" onClick={() => {
-                                            setDataPartisipanGroup(item)
-                                            modalServiceCreate.openModalHandling()
-                                        }} />
                                     </div>
                                 </div>
                             </Card>
@@ -93,7 +82,7 @@ const PartisipanGroup = () => {
                                         <div className='text-[20px] font-bold'> List Partisipan Seminar</div>
                                     </div>
                                     <div className='flex-grow overflow-y-auto flex flex-col gap-2 border-[1px] p-4 rounded-md'>
-                                        {dataPartisipanGroup?.partisipan.map((item, idx) => {
+                                        {dummyPartipanData.map((item, idx) => {
                                             return (
                                                 <div key={idx} className='flex gap-2 items-center border-b pb-2'>
                                                     <div className='h-full flex justify-center rounded-md px-3 border-[1px]'>
@@ -102,7 +91,7 @@ const PartisipanGroup = () => {
                                                     <div className='flex w-full items-start gap-3'>
                                                         <div className="flex-1">
                                                             <h2 className="text-xl font-bold text-gray-800">{item.nama}</h2>
-                                                            <p className="text-sm text-gray-500">{item.id}</p>
+                                                            <p className="text-sm text-gray-500">{item.email}</p>
                                                         </div>
                                                     </div>
                                                     <div className='text-[24px] flex gap-2'>
@@ -119,9 +108,6 @@ const PartisipanGroup = () => {
                     </div>
                 </div>
 
-                <Modal isModalOpen={modalServiceCreate.isModalOpen} className="!w-2/3  px-0" >
-                    <PartisipanGroupCreate service={service} />
-                </Modal>
                 <ModalToast
                     isOpen={isDelete}
                     type="danger"
@@ -159,4 +145,4 @@ const PartisipanGroup = () => {
     );
 };
 
-export default PartisipanGroup;
+export default QuizDetails;

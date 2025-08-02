@@ -18,7 +18,7 @@ const dropdownBankSoal: IDropdownItem[] = [
     },
     {
         icon: 'ri-book-open-line',
-        title: 'Soal Group',
+        title: 'Group Soal',
         link: '/soal-group',
         description: 'View all available courses in the system'
     },

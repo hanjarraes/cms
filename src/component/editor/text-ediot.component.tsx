@@ -19,7 +19,7 @@ const TextEditor = () => {
   });
 
   return (
-    <div className="editor-container">
+    <div className="editor-container h-full overflow-y-scroll">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} className="editor-content" />
     </div>

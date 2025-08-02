@@ -1,0 +1,29 @@
+.step-item {
+    @apply flex items-center;
+}
+.step {
+    @apply flex items-center justify-center relative rounded-full font-semibold border-2;
+    border-color: var(--loglines-info-v5);
+    color: var(--loglines-gray-v6);
+    background-color: var(--loglines-white);
+}
+
+.unfinished .step {
+    border-color: var(--loglines-gray-v3);
+    background-color: var(--loglines-white);
+    color: var(--loglines-gray-v6);
+}
+.completed .step {
+    @apply border-2;
+    color: var(--loglines-white);
+    border-color: var(--loglines-info-v5);
+    background-color: var(--loglines-info-v5);
+}
+
+.unfinished p {
+    color: var(--loglines-gray-v6);
+}
+
+.completed p {
+    color: var(--loglines-info-v5);
+}

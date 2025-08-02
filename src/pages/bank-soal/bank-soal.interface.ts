@@ -3,6 +3,7 @@ import { IUseModal } from "component/modal/modal.service";
 import { UseFormReturn } from "react-hook-form";
 
 export interface IBankSoal {
+  id: string
   title: string
   desc: string
   tag: TagSoal[]
@@ -13,12 +14,24 @@ export interface TagSoal {
   type: string
 }
 
+export interface IOptionItem {
+  type: string;
+  value: string;
+  isCorrect?: boolean;
+}
 export interface IFormBankSoal {
   title: string
   desc: string
-  tag: string
+  tag: IDropdownItem<string>
   kategori: IDropdownItem<string>
-  options?: string[]
+  type: IDropdownItem<string>
+  options?: IOptionItem[];
+}
+
+export interface IFormBankSoalGroup {
+  title: string
+  desc: string
+  tag: IDropdownItem<string>
 }
 
 export interface IUseBankSoal {

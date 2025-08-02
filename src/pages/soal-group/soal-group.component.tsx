@@ -23,7 +23,7 @@ const SoalGroup = () => {
 
     return (
         <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 dark:bg-gray-900">
-            <div className="max-w-5xl mx-auto space-y-3">
+            <div className="max-w-5xl  mx-auto space-y-3">
                 <Card>
                     <div className='flex justify-between items-center gap-2 px-2'>
                         <div className='text-[24px] font-bold'> Group Soal </div>

@@ -94,6 +94,17 @@ body {
     cursor: pointer;
 }
 
+::-webkit-scrollbar-thumb:vertical {
+    background-color: var(--gray-v2);
+    border-radius: 14px;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: var(--gray-v3);
+    border-radius: 15px !important;
+    cursor: pointer;
+}
+
 .scrollable-content::-webkit-scrollbar * {
     background: transparent;
 }

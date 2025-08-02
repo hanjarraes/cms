@@ -1,57 +1,45 @@
-import Button from 'component/button/button.component';
-import Input from 'component/input/input.component';
-import { useState } from 'react';
-import Card from 'component/card/card.component';
-import { dummyBankSoal } from './bank-soal.dummy';
-import ModalToast from 'component/modal-massage/modal-massage';
-import useBankSoal from './bank-soal.service';
+import Card from "component/card/card.component";
+import Input from "component/input/input.component";
+import { IUseModal } from "component/modal/modal.service";
+import { dummyBankSoal } from "pages/bank-soal/bank-soal.dummy";
+import { useState } from "react";
 
-const BankSoal = () => {
+
+const ModalExample = ({ isModal }: { isModal: IUseModal }) => {
     const [search, setSearch] = useState('');
 
     const filteredQuizzes = dummyBankSoal.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
-    const service = useBankSoal()
-    const {
-        isConfirm,
-        isDelete,
-        nav,
-        setIsDelete,
-        setDataBankSoal,
-        setIsConfirm,
-    } = service
 
     return (
-        <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 dark:bg-gray-900">
-            <div className="max-w-5xl  mx-auto space-y-3">
+        <>
+            <div className="max-w-5xl  mx-auto space-y-3 border-[1px] rounded-md p-4">
                 <Card>
                     <div className='flex justify-between items-center gap-2 px-2'>
-                        <div className='text-[24px] font-bold'> Bank Soal </div>
-                        <div className='flex justify-between gap-2'>
+                        <div className='text-[24px] font-bold'> Example </div>
+                        <div className='flex justify-between items-center gap-2'>
                             <Input
                                 icon='ri-search-line'
                                 placeholder='Search'
                                 onChange={(e) => setSearch(e.target.value)}
                             />
                             <i className='ri-filter-2-line text-[24px] hover:text-[--info-v5]' onClick={() => { }} />
-                            <Button
-                                label='Tambah Soal'
-                                variant='default'
-                                className='min-w-fit'
-                                useUpperCase
-                                onClick={() => {  nav('/bank-soal-create')}}
-                            />
+                            <i
+                                className='ri-close-large-line text-[18px] hover:text-[--danger-v5] cursor-pointer font-bold'
+                                onClick={() => {
+                                    isModal.closeModalHandling()
+                                }} />
                         </div>
                     </div>
                 </Card>
 
                 {/* Card List - Scrollable vertically */}
-                <div className="flex flex-col gap-2 h-[calc(100vh-10rem)] overflow-y-auto pr-2 mt-0">
+                <div className="flex flex-col gap-2 h-[calc(100vh-20rem)] overflow-y-auto pr-2 mt-0 pb-4">
                     {filteredQuizzes.map((item, idx) => (
                         <Card
                             key={idx}
-                            animated
+
                         >
                             <div className="flex justify-between items-start gap-5">
                                 <div className='bg-animasi h-full flex justify-center rounded-md px-5'>
@@ -61,7 +49,7 @@ const BankSoal = () => {
                                     <div className="flex-1">
                                         <h2 className="text-xl font-bold text-gray-800">{item.title}</h2>
                                         <p className="text-sm text-gray-500">{item.desc}</p>
-                                        <div className='flex gap-2 mt-3'>
+                                        <div className='flex gap-2 mt-3 max-w-full overflow-x-auto'>
                                             {item.tag.map((tag, idxTag) => {
                                                 const tagColorMap: Record<string, string> = {
                                                     Kategori: 'bg-blue-100 text-blue-800',
@@ -78,7 +66,7 @@ const BankSoal = () => {
                                                 return (
                                                     <div
                                                         key={idxTag + 'idTag'}
-                                                        className={`px-2 py-1 text-xs rounded-md font-bold w-fit  ${colorClass}`}
+                                                        className={`px-2 py-1 text-xs rounded-md font-bold min-w-fit  ${colorClass}`}
                                                     >
                                                         {tag.name}
                                                     </div>
@@ -90,12 +78,12 @@ const BankSoal = () => {
                                 </div>
                                 <div className='flex flex-col h-[80px] justify-between'>
                                     <div className='text-[24px] flex gap-2'>
-                                        <i className="ri-delete-bin-line hover:text-[--danger-v5]" onClick={() => setIsDelete(true)} />
+                                        {/* <i className="ri-delete-bin-line hover:text-[--danger-v5]" onClick={() => setIsDelete(true)} />
                                         <i className="ri-edit-2-line  hover:text-[--info-v5]" onClick={() => {
                                             setDataBankSoal(item)
-                                        }} />
-                                        <div className='text-[14px] font-bold bg-[--success-v2] flex items-center px-4 rounded-md text-[--success-v7]'>
-                                            Active
+                                        }} /> */}
+                                        <div className='text-[14px] font-bold bg-[--success-v2] text-[--success-v7] hover:bg-[--success-v3]  flex items-center px-4 rounded-md cursor-pointer'>
+                                            Pilih
                                         </div>
                                     </div>
                                     <p className="text-xs text-gray-400">Last Update: 12:00 PM </p>
@@ -105,40 +93,9 @@ const BankSoal = () => {
                         </Card>
                     ))}
                 </div>
-                <ModalToast
-                    isOpen={isDelete}
-                    type="danger"
-                    title="Hapus Data?"
-                    description={
-                        'Apakah Anda yakin menghapus data ini?'
-                    }
-                    onClose={() => {
-                        setIsDelete(false)
-                    }}
-                    onSubmit={() => {
-                        setIsDelete(false);
-                    }}
-                    submitLabel="Konfirmasi"
-                />
-                <ModalToast
-                    isOpen={isConfirm}
-                    type="info"
-                    title="Konfirmasi Data?"
-                    description={
-                        'Apakah Anda yakin ingin menyimpan data ini?'
-                    }
-                    onClose={() => {
-                        setIsConfirm(false)
-                    }
-                    }
-                    onSubmit={() => {
-                        setIsConfirm(false);
-                    }}
-                    submitLabel="Konfirmasi"
-                />
             </div>
-        </div>
+        </>
     );
 };
 
-export default BankSoal;
+export default ModalExample;

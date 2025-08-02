@@ -1,4 +1,5 @@
-import { IFormSoalGroup, ISoalGroup } from "./soal-group.interface";
+import { ISteps } from "component/progression-step/progression-step.interface";
+import { ISoalGroup } from "./soal-group.interface";
 
 export const dummySoalGroup: ISoalGroup[] = [
   {
@@ -73,7 +74,7 @@ export const dummySoalGroup: ISoalGroup[] = [
       { name: "Level SMP", type: "Level" },
     ],
   },
-   {
+  {
     title: "Soal Matematika Dasar",
     desc: "Kumpulan soal aritmatika dasar untuk siswa kelas 4–6.",
     tag: [
@@ -145,7 +146,7 @@ export const dummySoalGroup: ISoalGroup[] = [
       { name: "Level SMP", type: "Level" },
     ],
   },
-   {
+  {
     title: "Soal Matematika Dasar",
     desc: "Kumpulan soal aritmatika dasar untuk siswa kelas 4–6.",
     tag: [
@@ -219,120 +220,15 @@ export const dummySoalGroup: ISoalGroup[] = [
   },
 ];
 
-export const dummySoalGroupCreate: IFormSoalGroup[] = [
-  {
-    id: 'SG001',
-    title: 'Soal Matematika Dasar',
-    desc: 'Pertanyaan mengenai operasi dasar matematika',
-    tag: 'matematika',
-    kategori: { value: 'options', label: 'Pilihan Ganda' },
-    options: ['1', '2', '3', '4']
-  },
-  {
-    id: 'SG002',
-    title: 'Soal Bahasa Indonesia',
-    desc: 'Pertanyaan tentang EYD dan tata bahasa',
-    tag: 'bahasa',
-    kategori: { value: 'text', label: 'Isian Singkat' }
-  },
-  {
-    id: 'SG003',
-    title: 'Soal IPA Kelas 6',
-    desc: 'Pertanyaan tentang sains dasar',
-    tag: 'ipa',
-    kategori: { value: 'checkbox', label: 'Checklist' },
-    options: ['Air', 'Api', 'Tanah', 'Udara']
-  },
-  {
-    id: 'SG004',
-    title: 'Soal Sejarah Indonesia',
-    desc: 'Pertanyaan seputar proklamasi dan kemerdekaan',
-    tag: 'sejarah',
-    kategori: { value: 'options', label: 'Pilihan Ganda' },
-    options: ['17 Agustus 1945', '18 Agustus 1945', '10 November 1945']
-  },
-  {
-    id: 'SG005',
-    title: 'Soal Geografi Dunia',
-    desc: 'Pertanyaan tentang benua dan samudra',
-    tag: 'geografi',
-    kategori: { value: 'text', label: 'Isian Singkat' }
-  },
-  {
-    id: 'SG006',
-    title: 'Soal Pendidikan Agama Islam',
-    desc: 'Pertanyaan tentang rukun Islam',
-    tag: 'agama',
-    kategori: { value: 'checkbox', label: 'Checklist' },
-    options: ['Shalat', 'Puasa', 'Zakat', 'Haji']
-  },
-  {
-    id: 'SG007',
-    title: 'Soal PPKN',
-    desc: 'Pertanyaan tentang pancasila',
-    tag: 'ppkn',
-    kategori: { value: 'options', label: 'Pilihan Ganda' },
-    options: ['Sila 1', 'Sila 2', 'Sila 3', 'Sila 4']
-  },
-  {
-    id: 'SG008',
-    title: 'Soal Fisika Dasar',
-    desc: 'Pertanyaan tentang gaya dan gerak',
-    tag: 'fisika',
-    kategori: { value: 'text', label: 'Isian Singkat' }
-  },
-  {
-    id: 'SG009',
-    title: 'Soal Kimia Dasar',
-    desc: 'Pertanyaan tentang unsur dan senyawa',
-    tag: 'kimia',
-    kategori: { value: 'checkbox', label: 'Checklist' },
-    options: ['Hidrogen', 'Oksigen', 'Karbon']
-  },
-  {
-    id: 'SG010',
-    title: 'Soal Bahasa Inggris',
-    desc: 'Pertanyaan tentang grammar dan vocabulary',
-    tag: 'english',
-    kategori: { value: 'options', label: 'Pilihan Ganda' },
-    options: ['Verb', 'Adjective', 'Noun']
-  },
-  {
-    id: 'SG011',
-    title: 'Soal Biologi',
-    desc: 'Pertanyaan tentang sistem pencernaan',
-    tag: 'biologi',
-    kategori: { value: 'text', label: 'Isian Singkat' }
-  },
-  {
-    id: 'SG012',
-    title: 'Soal Ekonomi Mikro',
-    desc: 'Pertanyaan tentang permintaan dan penawaran',
-    tag: 'ekonomi',
-    kategori: { value: 'options', label: 'Pilihan Ganda' },
-    options: ['Permintaan', 'Penawaran', 'Pasar Bebas']
-  },
-  {
-    id: 'SG013',
-    title: 'Soal Informatika',
-    desc: 'Pertanyaan seputar logika pemrograman',
-    tag: 'informatika',
-    kategori: { value: 'checkbox', label: 'Checklist' },
-    options: ['If-Else', 'Looping', 'Function']
-  },
-  {
-    id: 'SG014',
-    title: 'Soal Kewirausahaan',
-    desc: 'Pertanyaan tentang ide dan peluang usaha',
-    tag: 'wirausaha',
-    kategori: { value: 'text', label: 'Isian Singkat' }
-  },
-  {
-    id: 'SG015',
-    title: 'Soal Seni Budaya',
-    desc: 'Pertanyaan tentang alat musik tradisional',
-    tag: 'seni',
-    kategori: { value: 'options', label: 'Pilihan Ganda' },
-    options: ['Angklung', 'Gamelan', 'Sasando']
-  }
+export const stepForm: ISteps[] = [
+    {
+        textIcon: '01',
+        label: 'Informasi',
+        value: 'informasi',
+    },
+    {
+        textIcon: '02',
+        label: 'Pilih Soal',
+        value: 'pilihsoal',
+    },
 ]

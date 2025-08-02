@@ -1,5 +1,6 @@
 import './modal.style.css'
 import clsx from 'clsx'
+import { useRef } from 'react'
 
 const Modal = ({
   children,
@@ -9,6 +10,8 @@ const Modal = ({
   hideOnDefault = true,
   parentDivClassName,
   animationDirection = 'center',
+  closeOnOutsideClick = false,
+  onClose,
 }: {
   isModalOpen: boolean
   children: React.ReactNode
@@ -17,7 +20,22 @@ const Modal = ({
   hideOnDefault?: boolean
   parentDivClassName?: string
   animationDirection?: 'top' | 'bottom' | 'left' | 'right' | 'center'
+  closeOnOutsideClick?: boolean
+  onClose?: () => void
 }) => {
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (
+      closeOnOutsideClick &&
+      onClose &&
+      modalRef.current &&
+      !modalRef.current.contains(e.target as Node)
+    ) {
+      onClose()
+    }
+  }
+
   const backdropClass = isModalOpen
     ? 'fade-in bg-black/40 pointer-events-auto'
     : `fade-out bg-transparent pointer-events-none ${hideOnDefault ? 'hidden' : ''}`
@@ -38,8 +56,10 @@ const Modal = ({
         backdropClass,
         parentDivClassName
       )}
+      onClick={handleOutsideClick}
     >
       <div
+        ref={modalRef}
         className={clsx(
           className,
           'bg-white rounded shadow-lg max-h-[90vh] overflow-y-auto w-3/4 sm:w-full sm:m-4',

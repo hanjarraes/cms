@@ -11,6 +11,7 @@ interface ModalToastProps {
     onClose?: () => void;
     onSubmit?: () => void;
     submitLabel?: string;
+    closeLabel?: string;
     type?: ToastType;
     title: string;
     description?: string | React.ReactNode;
@@ -45,6 +46,7 @@ const ModalToast: React.FC<ModalToastProps> = ({
     onClose,
     onSubmit,
     submitLabel = 'OK',
+    closeLabel = 'Batal',
     type = 'info',
     title,
     description,
@@ -86,7 +88,7 @@ const ModalToast: React.FC<ModalToastProps> = ({
                 <div className="flex justify-between gap-2 mt-2">
                     {onClose && (
                         <Button
-                            label={'Batal'}
+                            label={closeLabel}
                             variant={'default'}
                             className='mt-4'
                             onClick={onClose}

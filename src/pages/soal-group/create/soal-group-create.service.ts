@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { initialSoal, schema } from "../soal-group.validate"
-import { useModal } from "component/modal/modal.service"
-import { IFormSoalGroup, IUseSoalGroupCreate } from "../soal-group.interface"
+import { IFormSoalGroup } from "../soal-group.interface"
+import { ISteps } from "component/progression-step/progression-step.interface"
+import { stepForm } from "../soal-group.dummy"
 
-const useSoalGroupCreate = (): IUseSoalGroupCreate => {
+const useSoalGroupCreate = () => {
     const [isConfirm, setIsConfirm] = useState(false);
+    const [isStep, setIsStep] = useState<ISteps>(stepForm[0])
 
     const reactForm = useForm<IFormSoalGroup>({
         resolver: zodResolver(schema),
@@ -15,6 +17,8 @@ const useSoalGroupCreate = (): IUseSoalGroupCreate => {
 
 
     return {
+        isStep,
+        setIsStep,
         isConfirm,
         setIsConfirm,
         reactForm,
