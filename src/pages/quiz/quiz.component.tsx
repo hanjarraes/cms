@@ -157,7 +157,7 @@ const QuizSoal = () => {
                             />
                         </div>
                         <div className="px-6 pb-5 grid grid-cols-2 gap-3">
-                            <div className='grid grid-cols-1 gap-2 h-[800px] overflow-y-scroll'>
+                            <div className='grid grid-cols-1 gap-2 h-[600px] overflow-y-scroll'>
                                 {filteredSchedulezes.map((item, idx) => (
                                     <QuizCard
                                         key={idx}
@@ -168,7 +168,7 @@ const QuizSoal = () => {
                                     />
                                 ))}
                             </div>
-                            <div className='space-y-4 '>
+                            <div className='space-y-4 border-[1px] rounded-md p-4'>
                                 <div>
                                     <h2 className="text-lg font-bold text-[--gray-v8]">{previewSoal?.title}</h2>
                                     <p className="text-sm text-[--gray-v5]">{previewSoal?.desc}</p>

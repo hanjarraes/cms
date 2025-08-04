@@ -6,6 +6,8 @@ import ModalToast from 'component/modal-massage/modal-massage';
 import useSchedule from './schedule.service';
 import { dummySchedule } from './schedule.dummy';
 import Tooltip from 'component/tooltip/tooltip.component';
+import Modal from 'component/modal/modal.component';
+import SchaduleCreate from './create/schedule-create.component';
 // import ScheduleCreate from './create/partisipan-create.component';
 
 const Schedule = () => {
@@ -91,9 +93,11 @@ const Schedule = () => {
                                 <div><span className="font-medium">Tgl Update:</span> 2025-07-30</div>
                             </div>
                         </Card>
-
                     ))}
                 </div>
+                <Modal isModalOpen={modalServiceCreate.isModalOpen} className="!w-1/2  px-0" >
+                    <SchaduleCreate  service={service}/>
+                </Modal>
                 {/* Modals */}
                 <ModalToast
                     isOpen={isDelete}

@@ -1,4 +1,4 @@
-import { ISchedule } from "./schedule";
+import { ISchedule } from "./schedule.interface";
 
 export const dummySchedule: ISchedule[] = [
   {
