@@ -2,7 +2,7 @@ import { IDropdownItem } from "component/dropdown/dropdown.interface";
 import { IUseModal } from "component/modal/modal.service";
 import { UseFormReturn } from "react-hook-form";
 
-export interface IQuiz {
+export interface ISchedule {
   title:string
   code:string
   durations:string
@@ -11,13 +11,13 @@ export interface IQuiz {
   deadline:string
   idGroup:string
   nameGroup:string
-  idTemplateSoal:string
-  templateSoal:string
+  idQuizSoal:string
+  quiz:string
   description:string
   note:string
 }
 
-export interface IFormQuiz {
+export interface IFormSchedule {
   id: string
   nama: string
   email: string

@@ -1,11 +1,13 @@
 import Button from "component/button/button.component";
+import CheckBox from "component/checkbox/checkbox.component";
 import Empty from "component/empty/empty.component";
 import Input from "component/input/input.component";
 import Modal from "component/modal/modal.component";
 import { useModal } from "component/modal/modal.service";
 import Tooltip from "component/tooltip/tooltip.component";
 import { IBankSoal } from "pages/bank-soal/bank-soal.interface";
-import { DragItem, ISoalGroupState } from "pages/soal-group/soal-group.interface";
+import { dummyOptionsSoal, dummyCheckboxSoal, dummyTextSoal, dummyFileSoal, dummyCodeSoal } from "pages/quiz/quiz.dummy";
+import { DragItem, IQuizSoalState } from "pages/quiz/quiz.interface";
 import { useMemo, useState } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
@@ -23,8 +25,8 @@ const DraggableItem = ({
     item: IBankSoal;
     index: number;
     iconButton: string
-    from: keyof ISoalGroupState;
-    onToggleItem: (item: IBankSoal, from: keyof ISoalGroupState) => void;
+    from: keyof IQuizSoalState;
+    onToggleItem: (item: IBankSoal, from: keyof IQuizSoalState) => void;
 }) => {
     const modalPreview = useModal()
     const [{ isDragging }, drag] = useDrag(() => ({
@@ -34,6 +36,9 @@ const DraggableItem = ({
             isDragging: monitor.isDragging(),
         }),
     }));
+
+    // dummyOptionsSoal, dummyCheckboxSoal, dummyTextSoal, dummyFileSoal, dummyCodeSoal
+    const previewSoal = dummyOptionsSoal
 
     return (
         <div
@@ -53,7 +58,7 @@ const DraggableItem = ({
                         ? item.tag.map((tag, i) => {
                             const tagColorMap: Record<string, string> = {
                                 Kategori: 'bg-blue-100 text-blue-800',
-                                Tipe: 'bg-green-100 text-green-800',
+                                Tipe: 'bg-green-100 text-[--success-v7]',
                                 Kesulitan: 'bg-yellow-100 text-yellow-800',
                                 Statistik: 'bg-gray-100 text-gray-700',
                                 Topik: 'bg-purple-100 text-purple-800',
@@ -86,9 +91,68 @@ const DraggableItem = ({
                 onClose={() => modalPreview.closeModalHandling()}
                 closeOnOutsideClick
                 isModalOpen={modalPreview.isModalOpen}
-                className="!w-1/3  px-0 h-[500px]" >
-                <div className="p-4 font-bold">
-                    Privew Soal
+                className="!w-2/3 max-w-[90vw] px-0 h-auto max-h-[90vh] overflow-y-auto"
+            >
+                <div className="space-y-4">
+                    <div className='flex justify-between border-b px-4 py-3 bg-animasi'>
+                        <div className='text-[18px] font-bold'>    Preview Soal</div>
+                        <i
+                            className='ri-close-large-line text-[18px] hover:text-[--danger-v5] cursor-pointer font-bold'
+                            onClick={() => {
+                                modalPreview.closeModalHandling();
+                            }}
+                        />
+                    </div>
+                    <div className="px-6 space-y-4 pb-5">
+                        <div>
+                            <h2 className="text-lg font-bold text-[--gray-v8]">{previewSoal?.title}</h2>
+                            <p className="text-sm text-[--gray-v5]">{previewSoal?.desc}</p>
+                        </div>
+
+                        {/* Tag */}
+                        <div className="flex flex-wrap gap-2 text-xs">
+                            <span className="bg-blue-100 text-[--info-800] px-2 py-1 rounded-full">
+                                Tag: {previewSoal?.tag?.label}
+                            </span>
+                            <span className="bg-green-100 text-[--success-v7] px-2 py-1 rounded-full">
+                                Kategori: {previewSoal?.kategori?.label}
+                            </span>
+                            <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
+                                Tipe: {previewSoal?.type?.label}
+                            </span>
+                        </div>
+
+                        {/* Soal (dari editor HTML) */}
+                        <div className="prose max-w-full bg-gray-50 p-4 rounded-md border">
+                            <div dangerouslySetInnerHTML={{ __html: previewSoal?.soal ?? '' }} />
+                        </div>
+
+                        {/* Opsi Jawaban */}
+                        {['options', 'checkbox'].includes(String(previewSoal?.type?.value)) && (
+                            <div className="space-y-2 mt-4">
+                                <div className="flex flex-col gap-2 mt-2">
+                                    {previewSoal?.options?.map((option, idx) => (
+                                        <CheckBox
+                                            key={idx}
+                                            type={previewSoal.type.value as 'options' | 'checkbox'}
+                                            label={option.value}
+                                            checked={option.isCorrect ?? false}
+                                            onChange={() => { }}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Tipe Jawaban Lain */}
+                        {['text', 'file', 'code'].includes(String(previewSoal?.type?.value)) && (
+                            <div className="mt-4 text-sm text-[--gray-v6] italic">
+                                Tipe soal ini menggunakan jawaban berbentuk{' '}
+                                <strong>{previewSoal?.type?.label}</strong>. Preview jawaban tidak tersedia.
+                            </div>
+                        )}
+                    </div>
+
                 </div>
             </Modal>
         </div>
@@ -106,11 +170,11 @@ export const DroppableColumn = ({
     title: string;
     iconButton: string
     items: IBankSoal[];
-    columnKey: keyof ISoalGroupState;
-    onToggleItem: (item: IBankSoal, from: keyof ISoalGroupState) => void;
+    columnKey: keyof IQuizSoalState;
+    onToggleItem: (item: IBankSoal, from: keyof IQuizSoalState) => void;
     onDropHandler: (
         draggedItem: DragItem,
-        toColumnKey: keyof ISoalGroupState
+        toColumnKey: keyof IQuizSoalState
     ) => void;
 }) => {
     const [search, setSearch] = useState('');

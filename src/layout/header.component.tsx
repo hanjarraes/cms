@@ -18,15 +18,15 @@ const dropdownBankSoal: IDropdownItem[] = [
     },
     {
         icon: 'ri-book-open-line',
-        title: 'Group Soal',
-        link: '/soal-group',
+        title: 'Quiz Soal',
+        link: '/quiz',
         description: 'View all available courses in the system'
     },
     {
         icon: 'ri-questionnaire-line',
-        title: 'Quiz',
-        link: '/quiz',
-        description: 'Create and manage quizzes for partisipan assessment'
+        title: 'Schedule',
+        link: '/schedule',
+        description: 'Create and manage schedulezes for partisipan assessment'
     }
 ];
 
@@ -71,7 +71,7 @@ export default function Header(): React.ReactElement {
                 <Navbar.Link href="/">
                     Dashboard
                 </Navbar.Link>
-                <Dropdown label="Bank Soal" inline arrowIcon={true}>
+                <Dropdown label="Activity" inline arrowIcon={true}>
                     <div className="w-[20rem] p-2">
                         {dropdownBankSoal.map((item, index) => (
                             <Dropdown.Item key={index} className="hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -112,7 +112,7 @@ export default function Header(): React.ReactElement {
                                 className="text-center text-sm text-gray-700 dark:text-gray-300 hover:underline px-2"
                             >
                                 <i className="ri-customer-service-2-line mr-1" />
-                                Create Quiz
+                                Create Schedule
                             </a>
                         </div>
                     </div>

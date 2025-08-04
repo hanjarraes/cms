@@ -20,7 +20,7 @@ import {
     COLORS,
     courseDistribution,
     courseProgress,
-    quizScoreData,
+    scheduleScoreData,
     stats,
 } from './dashboard.static';
 
@@ -134,9 +134,9 @@ const Dashboard = () => {
                 </Card>
 
                 <Card className="lg:col-span-2 shadow-md rounded-2xl">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Quiz Score Trend</h3>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Schedule Score Trend</h3>
                     <ResponsiveContainer width="100%" height={260}>
-                        <BarChart data={quizScoreData}>
+                        <BarChart data={scheduleScoreData}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
                             <YAxis domain={[0, 100]} />

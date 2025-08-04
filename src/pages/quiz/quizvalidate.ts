@@ -16,5 +16,5 @@ export const schema = z
 export const initialSoal = {
     title: '',
     desc: '',
-    tag: { value: '', label: '' },
+    tag: undefined,
 }

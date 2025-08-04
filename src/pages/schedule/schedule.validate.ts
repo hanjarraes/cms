@@ -14,7 +14,7 @@ export const schema = z.object({
     jenisKelamin: z.string().min(1, 'Jenis Kelamin wajib dipilih'),
 });
 
-export const initialQuiz = {
+export const initialSchedule = {
     id: '',
     nama: '',
     email: '',

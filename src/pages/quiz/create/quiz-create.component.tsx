@@ -1,13 +1,13 @@
 import Button from 'component/button/button.component';
 import Input from 'component/input/input.component';
-import { DragItem, IFormSoalGroup, ISoalGroupState } from '../soal-group.interface';
+import { DragItem, IFormQuizSoal, IQuizSoalState } from '../quiz.interface';
 import TextArea from 'component/text-area/text-area.component';
 import { DndProvider } from 'react-dnd';
 import { DroppableColumn } from './droppble-column/droppble-column.component';
 import { useState } from 'react';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { stepForm } from '../soal-group.dummy';
-import useSoalGroupCreate from './soal-group-create.service';
+import { stepForm } from '../quiz.dummy';
+import useQuizSoalCreate from './quiz-create.service';
 import { useNavigate } from 'react-router-dom';
 import ProgressionStep from 'component/progression-step/progression-step.component';
 import Dropdown from 'component/dropdown/dropdown.component';
@@ -15,9 +15,9 @@ import { IDropdownItem } from 'component/dropdown/dropdown.interface';
 import { dummyBankSoal } from 'pages/bank-soal/bank-soal.dummy';
 import { IBankSoal } from 'pages/bank-soal/bank-soal.interface';
 
-const SoalGroupCreate = () => {
+const QuizSoalCreate = () => {
     const nav = useNavigate()
-    const [soalDnd, setSoalDnd] = useState<ISoalGroupState>({
+    const [soalDnd, setSoalDnd] = useState<IQuizSoalState>({
         listData: {
             id: 1,
             title: 'List Soal',
@@ -34,7 +34,7 @@ const SoalGroupCreate = () => {
         isStep,
         setIsStep,
         reactForm,
-    } = useSoalGroupCreate();
+    } = useQuizSoalCreate();
 
     const {
         watch,
@@ -44,18 +44,18 @@ const SoalGroupCreate = () => {
         formState: { errors },
     } = reactForm
 
-    const onSubmit = (values: IFormSoalGroup) => {
+    const onSubmit = (values: IFormQuizSoal) => {
         reactForm.reset({
             title: '',
             desc: '',
-            tag: { value: '', label: '' },
+            tag: undefined,
         });
     };
 
 
     const onDropHandler = (
         draggedItem: DragItem,
-        toColumnKey: keyof ISoalGroupState
+        toColumnKey: keyof IQuizSoalState
     ) => {
         const fromColumnKey = draggedItem.from;
         if (fromColumnKey === toColumnKey) return;
@@ -85,7 +85,7 @@ const SoalGroupCreate = () => {
 
     const handleToggleItem = (
         item: IBankSoal,
-        from: keyof ISoalGroupState
+        from: keyof IQuizSoalState
     ) => {
         const to = from === 'listData' ? 'AddData' : 'listData';
 
@@ -129,7 +129,7 @@ const SoalGroupCreate = () => {
                         {isStep.value === 'informasi' ? (
                             <div className='flex flex-col gap-3 border-[1px] pt-4 px-3 pb-2 rounded-md  w-[500px]'>
                                 <div className='flex justify-between '>
-                                    <div className='text-[16px] font-bold flex items-center'>INFORMASI GROUP</div>
+                                    <div className='text-[16px] font-bold flex items-center'>INFORMASI QUIZ</div>
                                 </div>
                                 <div className='grid grid-cols-2 gap-2'>
                                     <div className='flex flex-col gap-2'>
@@ -238,4 +238,4 @@ const SoalGroupCreate = () => {
     );
 };
 
-export default SoalGroupCreate;
+export default QuizSoalCreate;

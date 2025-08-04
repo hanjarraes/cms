@@ -1,50 +1,31 @@
-import { IFormQuiz, IQuiz } from "./quiz"
-import { useModal } from '../../component/modal/modal.service'
+import { IFormQuizSoal } from "./quiz.interface"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { initialQuiz, schema } from "./quiz.validate"
+import { initialSoal, schema } from "./quizvalidate"
 import { useNavigate } from "react-router-dom"
+import { useModal } from "component/modal/modal.service"
 
-const useQuiz = () => {
+const useQuizSoal = () => {
     const nav = useNavigate()
-    const [dataQuiz, setDataQuiz] = useState<IQuiz | null>(null)
-    const [isConfirm, setIsConfirm] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
-    const modalServiceCreate = useModal()
+    const [option, setOption] = useState('')
+    const modalPreview = useModal()
 
-    const reactForm = useForm<IFormQuiz>({
+    const reactForm = useForm<IFormQuizSoal>({
         resolver: zodResolver(schema),
-        defaultValues: initialQuiz,
+        defaultValues: initialSoal,
     });
 
-    useEffect(() => {
-        if (dataQuiz) {
-            reactForm.reset({
-                // id: dataQuiz.nim || '',
-                // nama: dataQuiz.nama || '',
-                // email: dataQuiz.emailPribadi || '',
-                // noTelepon: dataQuiz.noTelepon || '',
-                // kategori: {
-                //     value: dataQuiz.pekerjaan,
-                //     label: dataQuiz.pekerjaan
-                // },
-                // jenisKelamin: dataQuiz.jenisKelamin || '',
-            });
-        }
-    }, [dataQuiz, reactForm]);
-
     return {
-        isConfirm,
-        setIsConfirm,
-        modalServiceCreate,
-        dataQuiz,
+        nav,
+        option, 
+        setOption,
         isDelete,
         reactForm,
-        nav,
+        modalPreview,
         setIsDelete,
-        setDataQuiz,
     }
 }
 
-export default useQuiz
+export default useQuizSoal

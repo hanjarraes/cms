@@ -4,10 +4,10 @@ import BankSoalCreate from 'pages/bank-soal/create/bank-soal-create.component'
 import Dashboard from 'pages/dashboard/dashboard.component'
 import PartisipanGroup from 'pages/partisipan-group/partisipan-group.component'
 import Partisipan from 'pages/partisipan/partisipan.component'
-import QuizDetails from 'pages/quiz/details/quiz-details.component'
-import Quiz from 'pages/quiz/quiz.component'
-import SoalGroupCreate from 'pages/soal-group/create/soal-group-create.component'
-import SoalGroup from 'pages/soal-group/soal-group.component'
+import ScheduleDetails from 'pages/schedule/details/schedule-details.component'
+import Schedule from 'pages/schedule/schedule.component'
+import QuizSoalCreate from 'pages/quiz/create/quiz-create.component'
+import QuizSoal from 'pages/quiz/quiz.component'
 
 export const mainRoutes: IRoute[] = [
     {
@@ -36,23 +36,23 @@ export const mainRoutes: IRoute[] = [
         Content: BankSoalCreate,
     },
     {
-        path: '/soal-group',
-        text: 'Soal Group',
-        Content: SoalGroup,
-    },
-    {
-        path: '/soal-group/create',
-        text: 'Soal Group Create',
-        Content: SoalGroupCreate,
-    },
-    {
         path: '/quiz',
-        text: 'Quiz',
-        Content: Quiz,
+        text: 'Quiz Soal',
+        Content: QuizSoal,
+    },
+    {
+        path: '/quiz/create',
+        text: 'Quiz Soal Create',
+        Content: QuizSoalCreate,
+    },
+    {
+        path: '/schedule',
+        text: 'Schedule',
+        Content: Schedule,
     },
       {
-        path: '/quiz/:id',
-        text: 'Quiz',
-        Content: QuizDetails,
+        path: '/schedule/:id',
+        text: 'Schedule',
+        Content: ScheduleDetails,
     },
 ]

@@ -12,7 +12,7 @@ import PartisipanCreate from './create/partisipan-create.component';
 const Partisipan = () => {
     const [search, setSearch] = useState('');
 
-    const filteredQuizzes = partisipans.filter((item) =>
+    const filteredSchedulezes = partisipans.filter((item) =>
         item.nama.toLowerCase().includes(search.toLowerCase())
     );
     const service = usePartisipan()
@@ -51,7 +51,7 @@ const Partisipan = () => {
 
                 {/* Card List - Scrollable vertically */}
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 h-[calc(100vh-10rem)] overflow-y-auto pr-2 mt-0">
-                    {filteredQuizzes.map((item, idx) => (
+                    {filteredSchedulezes.map((item, idx) => (
                         <Card
                             key={idx}
                             className='p-4'
@@ -68,8 +68,8 @@ const Partisipan = () => {
                                     </span>
                                 </div>
                                 <div className='text-[24px] flex gap-2'>
-                                    <i className="ri-delete-bin-line hover:text-[--danger-v5]" onClick={() => setIsDelete(true)} />
-                                    <i className="ri-edit-2-line  hover:text-[--info-v5]" onClick={() => {
+                                    <i className="ri-delete-bin-line text-[--gray-v4]  hover:text-[--danger-v5]" onClick={() => setIsDelete(true)} />
+                                    <i className="ri-edit-2-line text-[--gray-v4]  hover:text-[--info-v5]" onClick={() => {
                                         setDataPartisipan(item)
                                         modalServiceCreate.openModalHandling()
                                     }} />
