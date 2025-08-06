@@ -4,6 +4,6 @@ export const schema = z.object({
     id: z.string().min(1, 'ID wajib diisi'),
 });
 
-export const initialSchedule = {
+export const initialQuiz = {
     id: '',
 }

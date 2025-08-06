@@ -85,10 +85,10 @@ export const schemaGroup = z
         })
     });
 
-export type IFormBankQuizSoal = z.infer<typeof schema>;
+export type IFormBankTemplateSoal = z.infer<typeof schema>;
 
 
-export const initialQuizSoal = {
+export const initialTemplateSoal = {
     title: '',
     desc: '',
     tag: undefined,

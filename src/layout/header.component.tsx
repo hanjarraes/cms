@@ -18,14 +18,14 @@ const dropdownBankSoal: IDropdownItem[] = [
     },
     {
         icon: 'ri-book-open-line',
-        title: 'Quiz Soal',
-        link: '/quiz',
+        title: 'Template Soal',
+        link: '/template',
         description: 'View all available courses in the system'
     },
     {
         icon: 'ri-questionnaire-line',
-        title: 'Schedule',
-        link: '/schedule',
+        title: 'Quiz',
+        link: '/quiz',
         description: 'Create and manage schedulezes for partisipan assessment'
     }
 ];
@@ -112,7 +112,7 @@ export default function Header(): React.ReactElement {
                                 className="text-center text-sm text-gray-700 dark:text-gray-300 hover:underline px-2"
                             >
                                 <i className="ri-customer-service-2-line mr-1" />
-                                Create Schedule
+                                Create Quiz
                             </a>
                         </div>
                     </div>

@@ -2,261 +2,129 @@ import Button from 'component/button/button.component';
 import Input from 'component/input/input.component';
 import { useState } from 'react';
 import Card from 'component/card/card.component';
-import { dummyOptionsSoal, dummyQuizSoal, dummyCheckboxSoal, dummyTextSoal, dummyFileSoal, dummyCodeSoal } from './quiz.dummy';
 import ModalToast from 'component/modal-massage/modal-massage';
-import useQuizSoal from './quiz.service';
+import useQuiz from './quiz.service';
+import { dummyQuiz } from './quiz.dummy';
+import Tooltip from 'component/tooltip/tooltip.component';
 import Modal from 'component/modal/modal.component';
-import CheckBox from 'component/checkbox/checkbox.component';
+import SchaduleCreate from './create/quiz-create.component';
+// import QuizCreate from './create/partisipan-create.component';
 
-
-const tagColorMap: Record<string, string> = {
-    Kategori: 'bg-blue-100 text-blue-800',
-    Tipe: 'bg-green-100 text-green-800',
-    Kesulitan: 'bg-yellow-100 text-yellow-800',
-    Statistik: 'bg-gray-100 text-gray-700',
-    Topik: 'bg-purple-100 text-purple-800',
-    Level: 'bg-pink-100 text-pink-800',
-    Sumber: 'bg-red-100 text-red-800',
-};
-
-const QuizCard = ({ item, onEdit, onDelete, onPreview }: any) => {
-    const [isScrollEnd, setIsScrollEnd] = useState(false);
-
-    const handleTagScroll = (e: React.UIEvent<HTMLDivElement>) => {
-        const el = e.currentTarget;
-        const isAtBottom = el.scrollHeight - el.scrollTop <= el.clientHeight + 2;
-        setIsScrollEnd(isAtBottom);
-    };
-
-    return (
-        <div className="p-4 border border-[--gray-v2] bg-white rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer">
-            {/* Header */}
-            <div className="flex justify-between items-start gap-3 mb-2">
-                <div className="flex-1">
-                    <div className="text-lg font-bold text-[--gray-v8] flex items-center gap-2">
-                        {item.title}
-                        <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-[--success-v2] text-[--success-v7]">
-                            Active
-                        </span>
-                    </div>
-                    <p className="text-sm text-[--gray-v5]">{item.desc}</p>
-                </div>
-                <div className="flex gap-2 text-[--gray-v5]">
-                    <i className="ri-eye-line hover:text-[--info-v6] cursor-pointer" onClick={onPreview} />
-                    <i className="ri-edit-2-line hover:text-[--info-v6] cursor-pointer" onClick={onEdit} />
-                    <i className="ri-delete-bin-line hover:text-[--danger-v5] cursor-pointer" onClick={onDelete} />
-                </div>
-            </div>
-
-            {/* Tags */}
-            <div className="relative mb-2 group">
-                <div
-                    className="flex flex-wrap gap-2 max-h-[110px] overflow-y-auto pr-1 scroll-smooth"
-                    onScroll={handleTagScroll}
-                >
-                    {item.tag.map((tag: any, idxTag: number) => {
-                        const colorClass = tagColorMap[tag.type] ?? 'bg-gray-100 text-[--gray-v8]';
-                        return (
-                            <span
-                                key={idxTag + 'tag'}
-                                className={`px-2 py-1 text-xs font-semibold rounded ${colorClass}`}
-                            >
-                                {tag.name}
-                            </span>
-                        );
-                    })}
-                </div>
-
-                {!isScrollEnd && item.tag.length > 8 && (
-                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent text-center text-[10px] text-[--gray-v4]">
-                        ...
-                    </div>
-                )}
-            </div>
-
-            {/* Metadata */}
-            <div className="grid sm:grid-cols-2 text-xs text-[--gray-v5] gap-y-1">
-                <div><span className="font-medium">Dibuat oleh:</span> Admin Utama</div>
-                <div><span className="font-medium">Tanggal dibuat:</span> 2025-07-15 12:00</div>
-                <div><span className="font-medium">Diperbarui oleh:</span> Dosen A</div>
-                <div><span className="font-medium">Update terakhir:</span> 2025-07-30 14:00</div>
-            </div>
-        </div>
-    );
-};
-
-const QuizSoal = () => {
+const Quiz = () => {
     const [search, setSearch] = useState('');
 
-    const filteredSchedulezes = dummyQuizSoal.filter((item) =>
+    const filteredQuizzes = dummyQuiz.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
-    const service = useQuizSoal()
+    const service = useQuiz()
     const {
-        nav,
+        modalServiceCreate,
+        isConfirm,
         isDelete,
         setIsDelete,
-        modalPreview,
+        setIsConfirm,
+        nav,
     } = service
 
-    // dummyOptionsSoal, dummyCheckboxSoal, dummyTextSoal, dummyFileSoal, dummyCodeSoal
-    const previewSoal = dummyOptionsSoal
-
     return (
-        <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 dark:bg-gray-900">
-            <div className="max-w-5xl  mx-auto space-y-3">
+        <div className="min-h-[calc(100vh-3.2rem)] p-4 sm:p-6 bg-gray-50 dark:bg-gray-900">
+            <div className="max-w-5xl  mx-auto space-y-4">
+                {/* Header */}
                 <Card>
-                    <div className='flex justify-between items-center gap-2 px-2'>
-                        <div className='text-[24px] font-bold'> Quiz Soal </div>
-                        <div className='flex justify-between gap-2'>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-3 px-2">
+                        <div className="text-xl font-bold">Quiz</div>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full md:w-auto">
                             <Input
-                                icon='ri-search-line'
-                                placeholder='Search'
+                                icon="ri-search-line"
+                                placeholder="Search"
                                 onChange={(e) => setSearch(e.target.value)}
+                                className="w-full sm:w-auto"
                             />
-                            <i className='ri-filter-2-line text-[24px] hover:text-[--info-v5]' onClick={() => { }} />
+                            <i className="ri-filter-2-line text-[24px] hover:text-[--info-v5] cursor-pointer" onClick={() => { }} />
                             <Button
-                                label='Tambah Quiz'
-                                variant='default'
-                                className='min-w-fit'
+                                label="Tambah Quiz"
+                                variant="default"
+                                className="min-w-fit"
                                 useUpperCase
-                                onClick={() => {
-                                    nav('/quiz/create')
-                                }}
+                                onClick={() => modalServiceCreate.openModalHandling()}
                             />
                         </div>
                     </div>
                 </Card>
 
-                {/* Card List - Scrollable vertically */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-[calc(100vh-10rem)] overflow-y-auto pr-2">
-                    {filteredSchedulezes.map((item, idx) => (
-                        <QuizCard
+                {/* Grid Card */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 h-[calc(100vh-12rem)] overflow-y-auto pr-1">
+                    {filteredQuizzes.map((item, idx) => (
+                        <Card
                             key={idx}
-                            item={item}
-                            onEdit={() => nav('/bank-soal-create')}
-                            onPreview={() => modalPreview.openModalHandling()}
-                            onDelete={() => setIsDelete(true)}
-                        />
+                            className="p-3 border border-gray-200 bg-white rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer"
+                            animated
+                            onClick={() => nav(`/quiz/${item.code}`)}
+                        >
+                            <div className="flex justify-between items-start mb-1">
+                                <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
+                                    {item.title}
+                                    <Tooltip isShow isHover parentInputClassName="!w-[30px]" className="min-w-max" text="Active">
+                                        <div className="h-2 w-2 rounded-full bg-[--success-v3] ring-1 ring-white" />
+                                    </Tooltip>
+                                </div>
+
+                                <div className="text-xs text-right text-gray-500">
+                                    <div className="font-medium mb-[2px]">Progress</div>
+                                    <div className="w-20 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                        <div className="bg-[--info-v6] h-full" style={{ width: `${95}%` }} />
+                                    </div>
+                                    <div className="text-[10px] mt-[2px]">{'95/100'}</div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-y-1 text-xs text-gray-700 font-mono mb-2">
+                                <div><span className="font-semibold">Kode:</span> {item.code}</div>
+                                <div><span className="font-semibold">Durasi:</span> {item.durations} mnt</div>
+                                <div><span className="font-semibold">Buka:</span> {item.testOpen}</div>
+                                <div><span className="font-semibold">Tutup:</span> {item.testClose}</div>
+                                <div><span className="font-semibold">Deadline:</span> {item.deadline}</div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-y-1 text-[10px] text-gray-500 border-t pt-2">
+                                <div><span className="font-medium">Dibuat:</span> Admin Utama</div>
+                                <div><span className="font-medium">Tgl Buat:</span> 2025-07-15</div>
+                                <div><span className="font-medium">Update:</span> Dosen A</div>
+                                <div><span className="font-medium">Tgl Update:</span> 2025-07-30</div>
+                            </div>
+                        </Card>
                     ))}
                 </div>
-                <Modal
-                    onClose={() => modalPreview.closeModalHandling()}
-                    closeOnOutsideClick
-                    isModalOpen={modalPreview.isModalOpen}
-                    className="!w-3/3 max-w-[90vw] px-0 h-auto max-h-[90vh] overflow-y-auto"
-                >
-                    <div className="space-y-4">
-                        <div className='flex justify-between border-b px-4 py-3 bg-animasi'>
-                            <div className='text-[18px] font-bold'> Preview Quiz</div>
-                            <i
-                                className='ri-close-large-line text-[18px] hover:text-[--danger-v5] cursor-pointer font-bold'
-                                onClick={() => {
-                                    modalPreview.closeModalHandling();
-                                }}
-                            />
-                        </div>
-                        <div className="px-6 pb-5 grid grid-cols-2 gap-3">
-                            <div className='grid grid-cols-1 gap-2 h-[600px] overflow-y-scroll'>
-                                {filteredSchedulezes.map((item, idx) => (
-                                    <QuizCard
-                                        key={idx}
-                                        item={item}
-                                        onEdit={() => nav('/bank-soal-create')}
-                                        onPreview={() => modalPreview.openModalHandling()}
-                                        onDelete={() => setIsDelete(true)}
-                                    />
-                                ))}
-                            </div>
-                            <div className='space-y-4 border-[1px] rounded-md p-4'>
-                                <div>
-                                    <h2 className="text-lg font-bold text-[--gray-v8]">{previewSoal?.title}</h2>
-                                    <p className="text-sm text-[--gray-v5]">{previewSoal?.desc}</p>
-                                </div>
-
-                                {/* Tag */}
-                                <div className="flex flex-wrap gap-2 text-xs">
-                                    <span className="bg-blue-100 text-[--info-800] px-2 py-1 rounded-full">
-                                        Tag: {previewSoal?.tag?.label}
-                                    </span>
-                                    <span className="bg-green-100 text-[--success-v7] px-2 py-1 rounded-full">
-                                        Kategori: {previewSoal?.kategori?.label}
-                                    </span>
-                                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
-                                        Tipe: {previewSoal?.type?.label}
-                                    </span>
-                                </div>
-
-                                {/* Soal (dari editor HTML) */}
-                                <div className="prose max-w-full bg-gray-50 p-4 rounded-md border">
-                                    <div dangerouslySetInnerHTML={{ __html: previewSoal?.soal ?? '' }} />
-                                </div>
-
-                                {/* Opsi Jawaban */}
-                                {['options', 'checkbox'].includes(String(previewSoal?.type?.value)) && (
-                                    <div className="space-y-2 mt-4">
-                                        <div className="flex flex-col gap-2 mt-2">
-                                            {previewSoal?.options?.map((option, idx) => (
-                                                <CheckBox
-                                                    key={idx}
-                                                    type={previewSoal.type.value as 'options' | 'checkbox'}
-                                                    label={option.value}
-                                                    checked={option.isCorrect ?? false}
-                                                    onChange={() => { }}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Tipe Jawaban Lain */}
-                                {['text', 'file', 'code'].includes(String(previewSoal?.type?.value)) && (
-                                    <div className="mt-4 text-sm text-[--gray-v6] italic">
-                                        Tipe soal ini menggunakan jawaban berbentuk{' '}
-                                        <strong>{previewSoal?.type?.label}</strong>. Preview jawaban tidak tersedia.
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-
-                    </div>
+                <Modal isModalOpen={modalServiceCreate.isModalOpen} className="!w-1/2  px-0" >
+                    <SchaduleCreate  service={service}/>
                 </Modal>
+                {/* Modals */}
                 <ModalToast
                     isOpen={isDelete}
                     type="danger"
                     title="Hapus Data?"
-                    description={
-                        'Apakah Anda yakin menghapus data ini?'
-                    }
-                    onClose={() => {
-                        setIsDelete(false)
-                    }}
-                    onSubmit={() => {
-                        setIsDelete(false);
-                    }}
+                    description="Apakah Anda yakin menghapus data ini?"
+                    onClose={() => setIsDelete(false)}
+                    onSubmit={() => setIsDelete(false)}
                     submitLabel="Konfirmasi"
                 />
-                {/* <ModalToast
+
+                <ModalToast
                     isOpen={isConfirm}
                     type="info"
                     title="Konfirmasi Data?"
-                    description={
-                        'Apakah Anda yakin ingin menyimpan data ini?'
-                    }
+                    description="Apakah Anda yakin ingin menyimpan data ini?"
                     onClose={() => {
-                        modalServiceCreate.openModalHandling();
+                        modalServiceCreate.openModalHandling()
                         setIsConfirm(false)
-                    }
-                    }
-                    onSubmit={() => {
-                        setIsConfirm(false);
                     }}
+                    onSubmit={() => setIsConfirm(false)}
                     submitLabel="Konfirmasi"
-                /> */}
+                />
             </div>
         </div>
+
     );
 };
 
-export default QuizSoal;
+export default Quiz;

@@ -20,7 +20,7 @@ export const courseProgress = [
     { course: 'UI/UX Design Basics', progress: 90 },
 ];
 
-export const scheduleScoreData = [
+export const quizScoreData = [
     { name: 'Week 1', score: 70 },
     { name: 'Week 2', score: 75 },
     { name: 'Week 3', score: 80 },
@@ -33,13 +33,13 @@ export const courseDistribution = [
     { name: 'Not Started', value: 20 },
 ];
 
-export const scheduleItems = [
+export const quizItems = [
     { date: 'April 26', title: 'Live Class: ReactJS Intermediate' },
     { date: 'April 27', title: 'Assignment Due: UI Redesign' },
     { date: 'April 29', title: 'Exam: Python Basics' },
     { date: 'May 1', title: 'Workshop: Next.js' },
     { date: 'May 3', title: 'Hackathon Submission' },
-    { date: 'May 5', title: 'Schedule: UI/UX Design' },
+    { date: 'May 5', title: 'Quiz: UI/UX Design' },
     { date: 'May 8', title: 'Live Q&A with Mentors' },
 ];
 

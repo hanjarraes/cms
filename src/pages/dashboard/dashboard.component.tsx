@@ -20,7 +20,7 @@ import {
     COLORS,
     courseDistribution,
     courseProgress,
-    scheduleScoreData,
+    quizScoreData,
     stats,
 } from './dashboard.static';
 
@@ -42,7 +42,7 @@ const Dashboard = () => {
                     </ul>
                 </Card>
                 <Card className="shadow-md rounded-2xl" >
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">Upcoming Schedule</h3>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">Upcoming Quiz</h3>
                     <div className="text-sm space-y-3 h-[100px] overflow-auto">
                         <div>
                             <strong>April 26</strong> - Live Class: ReactJS Intermediate
@@ -134,9 +134,9 @@ const Dashboard = () => {
                 </Card>
 
                 <Card className="lg:col-span-2 shadow-md rounded-2xl">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Schedule Score Trend</h3>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Quiz Score Trend</h3>
                     <ResponsiveContainer width="100%" height={260}>
-                        <BarChart data={scheduleScoreData}>
+                        <BarChart data={quizScoreData}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" />
                             <YAxis domain={[0, 100]} />
@@ -147,7 +147,7 @@ const Dashboard = () => {
                 </Card>
             </div>
 
-            {/* Completion & Schedule */}
+            {/* Completion & Quiz */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* Completion Line Chart */}
                 <Card className="lg:col-span-2 shadow-md rounded-2xl">
@@ -171,7 +171,7 @@ const Dashboard = () => {
                     </ResponsiveContainer>
                 </Card>
 
-                {/* Progress & Schedule */}
+                {/* Progress & Quiz */}
                 <div className="flex flex-col gap-4">
                     <Card className="shadow-md rounded-2xl">
                         <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">My Course Progress</h3>
@@ -188,7 +188,7 @@ const Dashboard = () => {
                     </Card>
 
                     <Card className="shadow-md rounded-2xl">
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Upcoming Schedule</h3>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Upcoming Quiz</h3>
                         <ul className="text-sm space-y-3">
                             <li>
                                 <strong>April 26</strong> - Live Class: ReactJS Intermediate

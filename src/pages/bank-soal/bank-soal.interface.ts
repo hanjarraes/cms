@@ -28,7 +28,7 @@ export interface IFormBankSoal {
   options?: IOptionItem[];
 }
 
-export interface IFormBankQuizSoal {
+export interface IFormBankTemplateSoal {
   title: string
   desc: string
   tag: IDropdownItem<string>

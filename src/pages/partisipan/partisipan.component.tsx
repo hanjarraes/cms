@@ -12,7 +12,7 @@ import PartisipanCreate from './create/partisipan-create.component';
 const Partisipan = () => {
     const [search, setSearch] = useState('');
 
-    const filteredSchedulezes = partisipans.filter((item) =>
+    const filteredQuizzes = partisipans.filter((item) =>
         item.nama.toLowerCase().includes(search.toLowerCase())
     );
     const service = usePartisipan()
@@ -51,7 +51,7 @@ const Partisipan = () => {
 
                 {/* Card List - Scrollable vertically */}
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 h-[calc(100vh-10rem)] overflow-y-auto pr-2 mt-0">
-                    {filteredSchedulezes.map((item, idx) => (
+                    {filteredQuizzes.map((item, idx) => (
                         <Card
                             key={idx}
                             className='p-4'

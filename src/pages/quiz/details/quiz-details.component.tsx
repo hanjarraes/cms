@@ -1,7 +1,7 @@
 import Input from 'component/input/input.component';
 import { useState } from 'react';
 import Card from 'component/card/card.component';
-import useScheduleDetails from './schedule-details.service';
+import useQuizDetails from './quiz-details.service';
 
 import { dummyBankSoal } from 'pages/bank-soal/bank-soal.dummy';
 import { dummyPartipanData } from 'pages/partisipan-group/partisipan-group.dummy';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'component/modal/modal.component';
 import Button from 'component/button/button.component';
 
-const ScheduleDetails = () => {
+const QuizDetails = () => {
     const nav = useNavigate()
     const [search, setSearch] = useState('');
     const [isScrollEnd, setIsScrollEnd] = useState(false);
@@ -20,7 +20,7 @@ const ScheduleDetails = () => {
         setIsScrollEnd(isAtBottom);
     };
 
-    const filteredSchedulezes = dummyBankSoal.filter((item) =>
+    const filteredQuizzes = dummyBankSoal.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
 
@@ -54,7 +54,7 @@ const ScheduleDetails = () => {
         return true; // default (tampilkan semua)
     });
 
-    const service = useScheduleDetails()
+    const service = useQuizDetails()
     const {
         modalPreviewPartisipan,
         modalPreviewSoal,
@@ -120,7 +120,7 @@ const ScheduleDetails = () => {
                             </div>
                         </Card>
                         <div className="grid grid-cols-1 gap-2 h-[calc(100vh-14.5rem)] overflow-y-auto mt-0">
-                            {filteredSchedulezes.map((item, idx) => (
+                            {filteredQuizzes.map((item, idx) => (
                                 <Card
                                     key={item.id}
                                     className="p-4 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
@@ -242,10 +242,10 @@ const ScheduleDetails = () => {
                                             <Info label="Nama" value="Muhammad Ilham" />
                                             <Info label="Email" value="ilham@example.com" />
                                             <Info label="ID Peserta" value="UJIAN-00123" />
-                                            <Info label="Tanggal Quiz" value="2025-08-02 09:30" />
+                                            <Info label="Tanggal Template" value="2025-08-02 09:30" />
                                             <Info label="Waktu Submit" value="2025-08-02 10:05" />
                                             <Info label="Durasi" value="35 menit" />
-                                            <Info label="Kategori Quiz" value="Simulasi CBT 1" />
+                                            <Info label="Kategori Template" value="Simulasi CBT 1" />
                                             <Info label="Jumlah Soal" value="40 soal" />
                                             <Info label="Nilai Minimal" value="75" />
                                             <Info label="Skor Akhir" value="85 / 100" />
@@ -490,4 +490,4 @@ const ScheduleDetails = () => {
     );
 };
 
-export default ScheduleDetails;
+export default QuizDetails;

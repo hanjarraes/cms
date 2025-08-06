@@ -5,7 +5,7 @@ import TextArea from 'component/text-area/text-area.component';
 import TextEditor from 'component/editor/text-ediot.component';
 import { IDropdownItem } from 'component/dropdown/dropdown.interface';
 import useBankSoalCreate from './bank-soal-create.service';
-import { IFormBankSoal, IFormBankQuizSoal } from '../bank-soal.interface';
+import { IFormBankSoal, IFormBankTemplateSoal } from '../bank-soal.interface';
 import Modal from 'component/modal/modal.component';
 import ModalExample from './example-soal/example-soal.component';
 import ModalToast from 'component/modal-massage/modal-massage';
@@ -21,7 +21,7 @@ const BankSoalCreate = () => {
         setOption,
         setDataBankSoal,
         modalServiceExample,
-        modalServiceQuiz,
+        modalServiceTemplate,
         isConfirm,
         setIsConfirm,
     } = useBankSoalCreate();
@@ -43,7 +43,7 @@ const BankSoalCreate = () => {
         });
     };
 
-    const onSubmitGroup = (values: IFormBankQuizSoal) => {
+    const onSubmitGroup = (values: IFormBankTemplateSoal) => {
         reactForm.reset({
             title: '',
             desc: '',
@@ -315,9 +315,9 @@ const BankSoalCreate = () => {
                 </Modal>
             </form>
             <Modal
-                onClose={() => modalServiceQuiz.closeModalHandling()}
+                onClose={() => modalServiceTemplate.closeModalHandling()}
                 closeOnOutsideClick
-                isModalOpen={modalServiceQuiz.isModalOpen}
+                isModalOpen={modalServiceTemplate.isModalOpen}
                 className="!w-1/3  px-0" >
                 <form onSubmit={reactFormGroup.handleSubmit(onSubmitGroup)}>
                     <div className='flex flex-col gap-3 border-[1px] pt-4 px-3 pb-2 rounded-md bg-white'>
@@ -383,7 +383,7 @@ const BankSoalCreate = () => {
                             }}
                         />
                         <Button
-                            label='Create Quiz'
+                            label='Create Template'
                             variant='info'
                             useUpperCase
                             className=''
@@ -400,7 +400,7 @@ const BankSoalCreate = () => {
                 type="info"
                 title="Konfirmasi Data?"
                 description={
-                    'Apakah Soal-Soal yang kamu buat mau dijadikan Quiz ??'
+                    'Apakah Soal-Soal yang kamu buat mau dijadikan Template ??'
                 }
                 onClose={() => {
                     nav('/bank-soal')
@@ -408,7 +408,7 @@ const BankSoalCreate = () => {
                 }
                 onSubmit={() => {
                     setIsConfirm(false);
-                    modalServiceQuiz.openModalHandling()
+                    modalServiceTemplate.openModalHandling()
                 }}
                 submitLabel="IYA"
                 closeLabel='TIDAK'

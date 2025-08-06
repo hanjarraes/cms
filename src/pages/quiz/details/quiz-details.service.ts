@@ -1,6 +1,6 @@
 import { useModal } from "component/modal/modal.service"
 
-const useScheduleDetails = () => {
+const useQuizDetails = () => {
 
     const modalPreviewPartisipan = useModal()
     const modalPreviewSoal = useModal()
@@ -11,4 +11,4 @@ const useScheduleDetails = () => {
     }
 }
 
-export default useScheduleDetails
+export default useQuizDetails

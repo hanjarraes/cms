@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { IBankSoal, IFormBankSoal, IFormBankQuizSoal } from "../bank-soal.interface"
+import { IBankSoal, IFormBankSoal, IFormBankTemplateSoal } from "../bank-soal.interface"
 import { useState } from "react"
-import { initialSoal, initialQuizSoal, schema, schemaGroup } from "../bank-soal.validate"
+import { initialSoal, initialTemplateSoal, schema, schemaGroup } from "../bank-soal.validate"
 import { useModal } from "component/modal/modal.service"
 import { useNavigate } from "react-router-dom"
 
@@ -12,16 +12,16 @@ const useBankSoalCreate = () => {
     const [isConfirm, setIsConfirm] = useState(false);
     const [option, setOption] = useState('')
     const modalServiceExample = useModal()
-    const modalServiceQuiz = useModal()
+    const modalServiceTemplate = useModal()
 
     const reactForm = useForm<IFormBankSoal>({
         resolver: zodResolver(schema),
         defaultValues: initialSoal,
     });
 
-    const reactFormGroup = useForm<IFormBankQuizSoal>({
+    const reactFormGroup = useForm<IFormBankTemplateSoal>({
         resolver: zodResolver(schemaGroup),
-        defaultValues: initialQuizSoal,
+        defaultValues: initialTemplateSoal,
     });
 
     return {
@@ -29,7 +29,7 @@ const useBankSoalCreate = () => {
         reactForm,
         option,
         isConfirm,
-        modalServiceQuiz,
+        modalServiceTemplate,
         reactFormGroup,
         nav,
         setIsConfirm,

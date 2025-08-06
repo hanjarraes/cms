@@ -85,7 +85,7 @@ const SoalCard = ({ item }: any) => {
 const ModalExample = ({ isModal }: { isModal: IUseModal }) => {
     const [search, setSearch] = useState('');
 
-    const filteredSchedulezes = dummyBankSoal.filter((item) =>
+    const filteredQuizzes = dummyBankSoal.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
 
@@ -113,7 +113,7 @@ const ModalExample = ({ isModal }: { isModal: IUseModal }) => {
 
                 {/* Card List - Scrollable vertically */}
                 <div className="flex flex-col gap-2 h-[calc(100vh-20rem)] overflow-y-auto pr-2 mt-0 pb-4">
-                    {filteredSchedulezes.map((item, idx) => (
+                    {filteredQuizzes.map((item, idx) => (
                         <SoalCard
                             key={idx}
                             item={item}

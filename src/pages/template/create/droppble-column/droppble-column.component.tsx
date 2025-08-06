@@ -6,8 +6,8 @@ import Modal from "component/modal/modal.component";
 import { useModal } from "component/modal/modal.service";
 import Tooltip from "component/tooltip/tooltip.component";
 import { IBankSoal } from "pages/bank-soal/bank-soal.interface";
-import { dummyOptionsSoal, dummyCheckboxSoal, dummyTextSoal, dummyFileSoal, dummyCodeSoal } from "pages/quiz/quiz.dummy";
-import { DragItem, IQuizSoalState } from "pages/quiz/quiz.interface";
+import { dummyOptionsSoal, dummyCheckboxSoal, dummyTextSoal, dummyFileSoal, dummyCodeSoal } from "pages/template/template.dummy";
+import { DragItem, ITemplateSoalState } from "pages/template/template.interface";
 import { useMemo, useState } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
@@ -25,8 +25,8 @@ const DraggableItem = ({
     item: IBankSoal;
     index: number;
     iconButton: string
-    from: keyof IQuizSoalState;
-    onToggleItem: (item: IBankSoal, from: keyof IQuizSoalState) => void;
+    from: keyof ITemplateSoalState;
+    onToggleItem: (item: IBankSoal, from: keyof ITemplateSoalState) => void;
 }) => {
     const modalPreview = useModal()
     const [{ isDragging }, drag] = useDrag(() => ({
@@ -170,11 +170,11 @@ export const DroppableColumn = ({
     title: string;
     iconButton: string
     items: IBankSoal[];
-    columnKey: keyof IQuizSoalState;
-    onToggleItem: (item: IBankSoal, from: keyof IQuizSoalState) => void;
+    columnKey: keyof ITemplateSoalState;
+    onToggleItem: (item: IBankSoal, from: keyof ITemplateSoalState) => void;
     onDropHandler: (
         draggedItem: DragItem,
-        toColumnKey: keyof IQuizSoalState
+        toColumnKey: keyof ITemplateSoalState
     ) => void;
 }) => {
     const [search, setSearch] = useState('');

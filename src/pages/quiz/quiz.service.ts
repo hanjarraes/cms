@@ -1,31 +1,34 @@
-import { IFormQuizSoal } from "./quiz.interface"
+import { useModal } from '../../component/modal/modal.service'
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { initialSoal, schema } from "./quizvalidate"
+import { initialQuiz, schema } from "./quiz.validate"
 import { useNavigate } from "react-router-dom"
-import { useModal } from "component/modal/modal.service"
+import { IFormQuiz, IQuiz, IUseQuiz } from './quiz.interface'
 
-const useQuizSoal = () => {
+const useQuiz = (): IUseQuiz => {
     const nav = useNavigate()
+    const [dataQuiz, setDataQuiz] = useState<IQuiz | null>(null)
+    const [isConfirm, setIsConfirm] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
-    const [option, setOption] = useState('')
-    const modalPreview = useModal()
+    const modalServiceCreate = useModal()
 
-    const reactForm = useForm<IFormQuizSoal>({
+    const reactForm = useForm<IFormQuiz>({
         resolver: zodResolver(schema),
-        defaultValues: initialSoal,
+        defaultValues: initialQuiz,
     });
 
     return {
-        nav,
-        option, 
-        setOption,
+        isConfirm,
+        setIsConfirm,
+        modalServiceCreate,
+        dataQuiz,
         isDelete,
         reactForm,
-        modalPreview,
+        nav,
         setIsDelete,
+        setDataQuiz,
     }
 }
 
-export default useQuizSoal
+export default useQuiz
