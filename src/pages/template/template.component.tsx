@@ -103,7 +103,7 @@ const TemplateSoal = () => {
     const previewSoal = dummyOptionsSoal
 
     return (
-        <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 ">
             <div className="max-w-5xl  mx-auto space-y-3">
                 <Card>
                     <div className='flex justify-between items-center gap-2 px-2'>
@@ -121,7 +121,7 @@ const TemplateSoal = () => {
                                 className='min-w-fit'
                                 useUpperCase
                                 onClick={() => {
-                                    nav('/template/create')
+                                    nav('/template-create')
                                 }}
                             />
                         </div>

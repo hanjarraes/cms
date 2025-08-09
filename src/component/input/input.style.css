@@ -29,7 +29,7 @@
 }
 
 .inputParent-style input {
-    @apply h-[35px];
+    @apply h-[35px] px-2;
     @apply border rounded-md text-[12px];
     @apply focus:!ring-transparent;
     @apply !w-full;

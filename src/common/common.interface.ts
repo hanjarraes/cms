@@ -34,6 +34,7 @@ export interface IRoute {
     Content?: () => JSX.Element
     show?: boolean
     expandable?: boolean
+    description?:string
     sub?: IRoute[]
     isSubMenu?: boolean
     index?: number

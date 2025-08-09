@@ -27,7 +27,7 @@ const Quiz = () => {
     } = service
 
     return (
-        <div className="min-h-[calc(100vh-3.2rem)] p-4 sm:p-6 bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-[calc(100vh-3.2rem)] p-4 sm:p-6 bg-gray-50 ">
             <div className="max-w-5xl  mx-auto space-y-4">
                 {/* Header */}
                 <Card>

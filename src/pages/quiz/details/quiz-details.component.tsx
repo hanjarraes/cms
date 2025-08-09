@@ -90,7 +90,7 @@ const QuizDetails = () => {
 
 
     return (
-        <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-[calc(100vh-3.2rem)] p-6 bg-gray-50 ">
             <div className="max-w-5xl mx-auto mb-6">
                 <button
                     onClick={() => nav(-1)}
@@ -123,45 +123,40 @@ const QuizDetails = () => {
                             {filteredQuizzes.map((item, idx) => (
                                 <Card
                                     key={item.id}
-                                    className="p-4 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                                    className="p-4 rounded-2xl border border-[--gray-v2] transition-shadow duration-300 cursor-pointer"
                                     animated
                                     onClick={() => {
                                         modalPreviewSoal.openModalHandling()
                                     }}
                                 >
-                                    <div className="flex flex-col gap-3">
-                                        <div>
-                                            <h2 className="text-lg font-semibold text-gray-800">{item.title}</h2>
-                                            <p className="text-sm text-gray-500">{item.desc}</p>
+                                    <div className="flex flex-col gap-4">
+                                        {/* Header */}
+                                        <div className="flex flex-col gap-1">
+                                            <h2 className="text-xl font-semibold text-[--gray-v10]">{item.title}</h2>
+                                            <p className="text-sm text-[--gray-v6]">{item.desc}</p>
                                         </div>
 
+                                        {/* Divider */}
+                                        <div className="border-t border-dashed border-[--gray-v3]"></div>
 
-                                        <div className="relative mb-2 group">
-                                            <div
-                                                className="flex flex-wrap gap-2 max-h-[110px] overflow-y-auto pr-1 scroll-smooth"
-                                                onScroll={handleTagScroll}
-                                            >
-                                                {item.tag.map((tag: any, idxTag: number) => {
-                                                    const colorClass = tagColorMap[tag.type] ?? 'bg-gray-100 text-[--gray-v8]';
-                                                    return (
-                                                        <span
-                                                            key={idxTag + 'tag'}
-                                                            className={`px-2 py-1 text-xs font-semibold rounded ${colorClass}`}
-                                                        >
-                                                            {tag.name}
-                                                        </span>
-                                                    );
-                                                })}
+                                        {/* Metadata */}
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-2 gap-x-4 text-sm text-[--gray-v8]">
+                                            <div className="flex items-center gap-1">
+                                                <i className="ri-list-check mr-1 text-[--primary-v5]" />
+                                                <span className="font-medium">Tipe:</span> Pilihan Ganda
                                             </div>
-
-                                            {!isScrollEnd && item.tag.length > 8 && (
-                                                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent text-center text-[10px] text-[--gray-v4]">
-                                                    ...
-                                                </div>
-                                            )}
+                                            <div className="flex items-center gap-1">
+                                                <i className="ri-bar-chart-2-line mr-1 text-[--warning-v5]" />
+                                                <span className="font-medium">Kesulitan:</span> Mudah
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <i className="ri-time-line mr-1 text-[--info-v5]" />
+                                                <span className="font-medium">Waktu:</span> 45 detik
+                                            </div>
                                         </div>
                                     </div>
                                 </Card>
+
                             ))}
                         </div>
                     </div>
@@ -369,31 +364,41 @@ const QuizDetails = () => {
                             {/* Kiri: Info Partisipan */}
                             <div className="space-y-6">
                                 {/* Header */}
-                                <div className="border-b pb-3">
-                                    <h2 className="text-xl font-bold text-[--gray-v8]">Informasi Soal</h2>
+                                <div>
+                                    <h2 className="text-2xl font-bold text-[--gray-v8]">📘 Informasi Soal</h2>
                                     <p className="text-sm text-[--gray-v5]">Detail soal, kunci jawaban, dan statistik performa partisipan</p>
                                 </div>
 
-                                {/* Card Konten */}
-                                <div className="border rounded-xl p-6 shadow-sm bg-white space-y-5 text-sm text-[--gray-v7]">
-
-                                    {/* Metadata Soal */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
-                                        <div><strong className="text-[--gray-v8]">Tipe Soal:</strong> Pilihan Ganda</div>
-                                        <div><strong className="text-[--gray-v8]">Kesulitan:</strong> Mudah</div>
-                                        <div><strong className="text-[--gray-v8]">Waktu Rata-rata:</strong> 45 detik</div>
+                                {/* Card */}
+                                <div className="rounded-xl shadow-md border bg-white p-6 space-y-6">
+                                    {/* Metadata */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-[--gray-v7]">
+                                        <div className="flex items-center gap-2">
+                                            <i className="ri-list-check text-[--gray-v5]" />
+                                            <span><strong className="text-[--gray-v8]">Tipe Soal:</strong> Pilihan Ganda</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <i className="ri-signal-wifi-fill text-[--gray-v5]" />
+                                            <span><strong className="text-[--gray-v8]">Kesulitan:</strong> Mudah</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 col-span-full">
+                                            <i className="ri-time-line text-[--gray-v5]" />
+                                            <span><strong className="text-[--gray-v8]">Waktu Rata-rata:</strong> 45 detik</span>
+                                        </div>
                                     </div>
 
                                     {/* Pertanyaan */}
                                     <div>
-                                        <strong className="text-[--gray-v8] block mb-1">Pertanyaan:</strong>
-                                        <p className="bg-[--gray-v1] rounded-md px-3 py-2">{`Apa ibu kota Indonesia?`}</p>
+                                        <h3 className="text-sm font-semibold text-[--gray-v8] mb-1">📝 Pertanyaan:</h3>
+                                        <div className="bg-[--gray-v1] p-3 rounded-md text-[--gray-v7] text-sm">
+                                            Apa ibu kota Indonesia?
+                                        </div>
                                     </div>
 
                                     {/* Opsi Jawaban */}
                                     <div>
-                                        <strong className="text-[--gray-v8] block mb-1">Opsi Jawaban:</strong>
-                                        <ul className="grid grid-cols-2 gap-2 list-none pl-0">
+                                        <h3 className="text-sm font-semibold text-[--gray-v8] mb-1">🎯 Opsi Jawaban:</h3>
+                                        <ul className="grid grid-cols-2 gap-2 text-sm">
                                             {['Jakarta', 'Bandung', 'Surabaya', 'Medan'].map((opt, idx) => (
                                                 <li key={idx} className="bg-[--gray-v1] px-3 py-1.5 rounded-md">{opt}</li>
                                             ))}
@@ -402,18 +407,16 @@ const QuizDetails = () => {
 
                                     {/* Jawaban Benar */}
                                     <div>
-                                        <strong className="text-[--gray-v8] block mb-1">Jawaban Benar:</strong>
-                                        <div className="inline-block px-3 py-1 rounded-md bg-[--success-v1] text-[--success-v7] font-medium">
+                                        <h3 className="text-sm font-semibold text-[--gray-v8] mb-1">✅ Jawaban Benar:</h3>
+                                        <span className="inline-block px-3 py-1 rounded-md bg-[--success-v1] text-[--success-v7] font-medium text-sm">
                                             Jakarta
-                                        </div>
+                                        </span>
                                     </div>
 
-
                                     {/* Statistik & Filter */}
-                                    <div className="space-y-3">
-                                        <strong className="text-[--gray-v8] block">Statistik Jawaban:</strong>
+                                    <div>
+                                        <h3 className="text-sm font-semibold text-[--gray-v8] mb-2">📊 Statistik Jawaban:</h3>
                                         <div className="flex flex-wrap gap-2">
-
                                             {[
                                                 { key: 'correct', label: 'Jawaban Benar', total: 12, color: 'success' },
                                                 { key: 'wrong', label: 'Jawaban Salah', total: 5, color: 'danger' },
@@ -422,16 +425,12 @@ const QuizDetails = () => {
                                                 <button
                                                     key={key}
                                                     onClick={() => setFilterStatus(key as 'correct' | 'wrong' | 'unanswered')}
-                                                    className={`
-              text-xs px-3 py-1 rounded-full border font-medium flex items-center gap-1
-              ${filterStatus === key
+                                                    className={`text-xs px-3 py-1 rounded-full border font-medium flex items-center gap-1 transition-all duration-200
+                ${filterStatus === key
                                                             ? `bg-[--${color}-v1] border-[--${color}-v3] text-[--${color}-v7]`
-                                                            : 'bg-white border-[--gray-v3] text-[--gray-v6] hover:bg-[--gray-v1]'}
-            `}
+                                                            : 'bg-white border-[--gray-v3] text-[--gray-v6] hover:bg-[--gray-v1]'}`}
                                                 >
-                                                    <i
-                                                        className={`ri-checkbox-circle-fill text-[--${color}-v5]`}
-                                                    />
+                                                    <i className={`ri-checkbox-circle-fill text-[--${color}-v5]`} />
                                                     {label} ({total})
                                                 </button>
                                             ))}
@@ -446,6 +445,8 @@ const QuizDetails = () => {
                                     </div>
                                 </div>
                             </div>
+
+
 
                             {/* Kanan: Daftar Jawaban */}
                             <div className="space-y-4 bg-[--gray-v1] rounded-md p-4 h-[600px] overflow-y-scroll mt-4">

@@ -12,9 +12,6 @@ import { Suspense } from 'react'
 import './config/config-i18n.service'
 
 // styling
-import 'flowbite';
-import 'flowbite-react';
-import 'flowbite/dist/flowbite.css';
 import './layout/layout.style.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
